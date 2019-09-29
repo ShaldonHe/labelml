@@ -111,8 +111,7 @@
                   <div class="headline">公司信息</div>
                 </v-card-title>
                 <v-card-text>
-                  Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                  贝叶科技-智能皮肤病理分析领域引导者.
                 </v-card-text>
               </v-card>
             </v-flex>
