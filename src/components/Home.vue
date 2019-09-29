@@ -7,8 +7,6 @@
     </v-toolbar>
     <main>
       <section>
-        <!-- <v-parallax src="http://pre11.deviantart.net/3e10/th/pre/f/2017/144/8/0/fight_by_nesskain-dbaa5v1.jpg" height="600"> -->
-        <!-- <v-parallax src="https://s3-us-west-1.amazonaws.com/labelai-static/hero.jpeg" height="600"> -->
         <v-parallax src="/static/skin-1.jpg" weight="600">
         
           <v-layout
@@ -26,7 +24,7 @@
               ripple
               to='/project/example_data'
             >
-            试用示例
+            试用Demo
             </v-btn>
           </v-layout>
         </v-parallax>
