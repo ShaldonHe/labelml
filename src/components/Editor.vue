@@ -50,7 +50,7 @@
     <v-btn icon to="/">
       <v-icon>arrow_back</v-icon>
     </v-btn>
-      <v-toolbar-title>My Project</v-toolbar-title>
+      <v-toolbar-title>皮肤病理切片</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-flex xs3 sm3>
@@ -97,7 +97,7 @@
     </main>
 
     <v-footer dark>
-      <span class="white--text">Copyright 2019 © 北京贝叶科技有限公司</span>
+      <span class="white--text" style="text-align: center; margin:0 auto">Copyright 2019 © 北京贝叶科技有限公司</span>
     </v-footer>
   </v-app>
   
