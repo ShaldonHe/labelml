@@ -97,7 +97,7 @@
     </main>
 
     <v-footer dark>
-      <span class="white--text">© 2017</span>
+      <span class="white--text">Copyright 2019 © 北京贝叶科技有限公司</span>
     </v-footer>
   </v-app>
   

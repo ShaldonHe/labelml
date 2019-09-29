@@ -4,7 +4,8 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    endpoint: 'http://labelml.wfcpkpjahu.us-west-1.elasticbeanstalk.com', 
+    // endpoint: 'http://labelml.wfcpkpjahu.us-west-1.elasticbeanstalk.com', 
+    endpoint: 'http://localhost:5000', 
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

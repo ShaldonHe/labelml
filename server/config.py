@@ -7,7 +7,7 @@ import os
 
 
 PROJECT_NAME = 'example_data' #'VOC2007' #'oxfordpets'
-BASE_PATH = '' #'/bigguy/data' #'/Users/bfortuner/data'
+BASE_PATH = '/home/sheldon/Documents/BeYes-Annotation/server' #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH, PROJECT_NAME, 'images')
 print(MEDIA_PATH)
@@ -57,7 +57,8 @@ class Config(object):
     AWS_REGION='us-west-1'
 
 class ProdConfig(Config):
-    ENDPOINT = 'http://labelml.us-west-1.elasticbeanstalk.com'
+    # ENDPOINT = 'http://labelml.us-west-1.elasticbeanstalk.com'
+    ENDPOINT = 'http://localhost:5000'
     DEBUG = False
 
 class DevConfig(Config):
@@ -65,7 +66,7 @@ class DevConfig(Config):
     DEBUG = True
 
 #config = globals()[os.getenv('LABELML_ENV', 'ProdConfig')]
-env = os.getenv('LABELML_ENV', 'prod')
+env = os.getenv('LABELML_ENV', 'dev')
 print ("ENV " + env)
 if env == 'prod':
     ENDPOINT = ProdConfig.ENDPOINT
