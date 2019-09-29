@@ -50,7 +50,7 @@ const KEYS = [
         'key': 'ctrl + s',
         'code': null,
         'combo': true,
-        'desc': 'save annotations'
+        'desc': '保存标注'
     },
     {
         'key': 'delete',
@@ -62,13 +62,13 @@ const KEYS = [
         'key': 'backspace',
         'code': 8,
         'combo': false,
-        'desc': 'delete object'
+        'desc': '删除标注'
     },
     {
         'key': 'esc',
         'code': 27,
         'combo': false,
-        'desc': 'deselect object'
+        'desc': '取消选中'
     },
     {
         'key': 'a',
@@ -122,43 +122,43 @@ const KEYS = [
         'key': 'ctrl + a',
         'code': null,
         'combo': true,
-        'desc': 'select'
+        'desc': '选择'
     },
     {
         'key': 'ctrl + d',
         'code': null,
         'combo': true,
-        'desc': 'box tool'
+        'desc': '矩形:拖拽模式'
     },
     {
         'key': 'ctrl + c',
         'code': null,
         'combo': true,
-        'desc': 'click-to-box'
+        'desc': '矩形:点击模式'
     },
     {
         'key': 'ctrl + p',
         'code': null,
         'combo': true,
-        'desc': 'polygon tool'
+        'desc': '多边形工具'
     },
     {
         'key': 'ctrl + n',
         'code': null,
         'combo': true,
-        'desc': 'next image'
+        'desc': '下一张'
     },
     {
         'key': 'ctrl + z',
         'code': null,
         'combo': true,
-        'desc': 'zoom mode'
+        'desc': '放缩模式'
     },
     {
         'key': 'shift + click',
         'code': null,
         'combo': true,
-        'desc': 'zoom-out'
+        'desc': '缩小'
     },
     {
         'key': 'h',
@@ -194,13 +194,13 @@ const KEYS = [
         'key': 'wheelUp',
         'code': null,
         'combo': false,
-        'desc': 'zoom-in'
+        'desc': '放大'
     },
     {
         'key': 'wheelDown',
         'code': null,
         'combo': false,
-        'desc': 'zoom-out'
+        'desc': '缩小'
     },
     {
         'key': 'click + drag',

@@ -17,8 +17,8 @@
             justify-center
             class="white--text"
           >
-            <h1 class="white--text mb-2 display-3">Blazing fast image annotation</h1>
-            <div class="headline mb-3 text-xs-center">Label training data 10x faster with predictive clicking</div>
+            <h1 class="white--text mb-2 display-3">皮肤病理切片标注</h1>
+            <div class="headline mb-3 text-xs-center">深度融合皮肤病理场景的智能标注系统</div>
             <v-btn
               class="blue lighten-2 mt-5"
               dark
@@ -26,7 +26,7 @@
               ripple
               to='/project/example_data'
             >
-            Try Demo
+            试用示例
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -51,8 +51,7 @@
                       <div class="headline text-xs-center">Intuitive UI</div>
                     </v-card-title>
                     <v-card-text>
-                      Extensive keyboard shortcuts and smart editing tools designed for speed
-                      provide unparalleled speed and control of your workflow.
+                      系统引入可扩充的快捷键交互, 智能编辑工具, 深度学习模型以加速皮肤病理切片的标注.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -100,7 +99,7 @@
               large
               href="/pre-made-themes"
             >
-              Get Started
+              开始标注
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -112,7 +111,7 @@
             <v-flex xs12 sm4>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Company info</div>
+                  <div class="headline">公司信息</div>
                 </v-card-title>
                 <v-card-text>
                   Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
@@ -123,7 +122,7 @@
             <v-flex xs12 sm4 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Contact us</div>
+                  <div class="headline">联系我们</div>
                 </v-card-title>
                 <v-list class="transparent">
                   <v-list-tile>
@@ -131,7 +130,7 @@
                       <v-icon class="blue--text text--lighten-2">place</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>San Francisco, US</v-list-tile-title>
+                      <v-list-tile-title>中国北京市海淀区西小口东升科技园北领地C1-108</v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                   <v-list-tile>
@@ -139,7 +138,7 @@
                       <v-icon class="blue--text text--lighten-2">email</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>bfortuner@gmail.com</v-list-tile-title>
+                      <v-list-tile-title>sheldon.he@be-yes.com</v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                 </v-list>
@@ -153,9 +152,8 @@
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="white--text ml-3">
-              Made with
+              本系统由北京贝叶科技有限公司技术部数据组运营
               <v-icon class="red--text">favorite</v-icon>
-              in San Francisco</a>
             </div>
           </v-flex>
         </v-layout>
@@ -174,7 +172,7 @@ export default {
   data () {
       return {
           drawer: true,
-          title: 'label.ml'
+          title: 'BeYes皮肤病理标注系统'
       }
   }
 }
