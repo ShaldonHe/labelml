@@ -17,15 +17,33 @@
           >
             <h1 class="white--text mb-2 display-3">皮肤病理切片标注</h1>
             <div class="headline mb-3 text-xs-center">深度融合皮肤病理场景的智能标注系统</div>
-            <v-btn
+            <div><v-btn
               class="blue lighten-2 mt-5"
               dark
               large
               ripple
               to='/project/example_data'
             >
-            试用Demo
+            Demo
             </v-btn>
+                        <v-btn
+              class="blue lighten-2 mt-5"
+              dark
+              large
+              ripple
+              to='/login'
+            >登陆
+            </v-btn>
+                        <v-btn
+              class="blue lighten-2 mt-5"
+              dark
+              large
+              ripple
+              to='/regist'
+            >
+            注册
+            </v-btn></div>
+            
           </v-layout>
         </v-parallax>
       </section>
