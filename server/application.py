@@ -25,6 +25,7 @@ app = application
 
 @app.route('/img/<project>/<filename>')
 def image(project, filename):
+    print('project,filename:',project,filename)
     img_dir = cfg.MEDIA_PATH
     return send_from_directory(img_dir, filename)
 
