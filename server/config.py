@@ -6,7 +6,7 @@ import os
 # HOST = 'localhost'
 
 
-PROJECT_NAME = 'example_data' #'VOC2007' #'oxfordpets'
+PROJECT_NAME = 'skin' #'VOC2007' #'oxfordpets'
 BASE_PATH = '/home/sheldon/Documents/BeYes-Annotation/server' #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH, PROJECT_NAME, 'images')
@@ -42,7 +42,7 @@ VAL = 'val'
 TEST = 'tst'
 UNLABELED = 'unlabeled'
 
-IMG_EXT = '.jpg'
+IMG_EXT = '.bmp'
 
 DEFAULT_WIDTH = 300
 DEFAULT_HEIGHT = 300

@@ -417,11 +417,13 @@ def make_annotations(annoList):
 
 def make_annotation(anno):
     # print("ANNO", anno)
+    polygon = anno['polygon'] if 'polygon' in anno else None
+    bbox = anno['bbox'] if 'bbox' in anno else None
     anno = Annotation(
         id=anno["id"],
         label=anno["label"],
-        bbox=make_bounding_box(anno['bbox']),
-        polygon=make_polygon(anno['polygon'])
+        bbox=make_bounding_box(bbox),
+        polygon=make_polygon(polygon)
     )
     # print("ANNO_AFTER", anno)
     return anno
@@ -457,7 +459,9 @@ def make_polygon(poly):
 
 
 def make_obj_detect_image(id_, project, img):
+    print('make_obj_detect_image:',project, data.id_to_fname(id_), id_)
     src = data.make_url(project, data.id_to_fname(id_))
+    print('make_obj_detect_image:',src)
     annos = [] if img is None else img['annotations']
     return ObjDetectImage(
         id=id_,
@@ -487,9 +491,15 @@ def get_next_obj_detect_img(project, currentId=None, dset=cfg.UNLABELED,
                             include_preds=True):
     fold = data.load_fold(project)
     ids = list(fold[dset].keys())
+    if len(ids)==0:
+        ids = list(fold['All'].keys())
     random.shuffle(ids)
     img = data.load_obj_detect_img(ids[0], project, include_preds)
     return make_obj_detect_image(ids[0], project, img)
+    # else:
+    #     index = (ids.index(currentId) + 1)%len(ids)
+    #     img = data.load_obj_detect_img(ids[index], project, include_preds)
+    #     return make_obj_detect_image(ids[index], project, img)
 
 
 def get_random_batch(proj_name, dset, shuffle=False, limit=20):
@@ -521,11 +531,16 @@ def get_ranked_batch(proj_name, dset, limit=cfg.BATCH_SIZE):
 
 
 def get_image_list(proj_name, dset=cfg.UNLABELED):
+    print('-'*100)
+    print('get_image_list:proj_name,',proj_name)
+    print('-'*100)
     if os.path.exists(data.get_fpath(proj_name, cfg.RANKINGS_FNAME)):
         image_data = get_ranked_batch(proj_name, dset)
     else:
         image_data = get_random_batch(
             proj_name, dset, shuffle=True)
+    print(image_data)
+    print(ImageList)
     return ImageList(images=image_data)
 
 
@@ -556,8 +571,8 @@ def save_obj_detect_image(id_, project, annos, dset=None):
                 fold[dset][id_] = entry
                 break
     ## NOT SAVING FOR DEMO !!!!!! ##
-    # data.save_fold(fold)
-    # data.update_counts(fold["name"])
+    data.save_fold(fold)
+    data.update_counts(fold["name"])
 
 
 def get_image(project, id_, dset=cfg.UNLABELED):
