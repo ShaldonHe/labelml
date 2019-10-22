@@ -350,8 +350,8 @@ def make_unlabeled_img(project, id_):
 
 
 def make_image(id_, fold, dset):
-    if dset == cfg.UNLABELED:
-        return make_unlabeled_img(fold['name'], id_)
+    # if dset == cfg.UNLABELED:
+    #     return make_unlabeled_img(fold['name'], id_)
     img_meta = fold[dset][id_]
     tags = [] if img_meta is None else img_meta['labels']
     mdl_tags = [] if img_meta is None else img_meta['model_labels']
@@ -562,13 +562,13 @@ def save_obj_detect_image(id_, project, annos, dset=None):
     dset = get_random_dset() if dset is None else dset
     entry = data.make_obj_detect_entry(annos)
     fold = data.load_fold(project)
-    if id_ in fold[cfg.UNLABELED]:
-        data.move_unlabeled_to_labeled(fold, dset, id_, entry)
-    else:
-        for dset in [cfg.VAL, cfg.TRAIN]:
-            if id_ in fold[dset]:
-                fold[dset][id_] = entry
-                break
+    # if id_ in fold[cfg.UNLABELED]:
+    #     data.move_unlabeled_to_labeled(fold, dset, id_, entry)
+    # else:
+    #     for dset in [cfg.VAL, cfg.TRAIN]:
+    #         if id_ in fold[dset]:
+    #             fold[dset][id_] = entry
+    #             break
     ## NOT SAVING FOR DEMO !!!!!! ##
     data.save_fold(fold)
     data.update_counts(fold["name"])

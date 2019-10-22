@@ -22,7 +22,7 @@
               dark
               large
               ripple
-              to='/project/example_data'
+              to='/project/skin'
             >
             Demo
             </v-btn>
