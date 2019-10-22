@@ -41,6 +41,7 @@ TRAIN = 'trn'
 VAL = 'val'
 TEST = 'tst'
 UNLABELED = 'unlabeled'
+ALL = 'All'
 
 IMG_EXT = '.bmp'
 

@@ -487,8 +487,7 @@ def get_metrics(project_name):
     )
 
 
-def get_next_obj_detect_img(project, currentId=None, dset=cfg.UNLABELED, 
-                            include_preds=True):
+def get_next_obj_detect_img(project, currentId=None, dset=cfg.ALL, include_preds=True):
     fold = data.load_fold(project)
     ids = list(fold[dset].keys())
     if len(ids)==0:
@@ -530,7 +529,7 @@ def get_ranked_batch(proj_name, dset, limit=cfg.BATCH_SIZE):
     return image_data
 
 
-def get_image_list(proj_name, dset=cfg.UNLABELED):
+def get_image_list(proj_name, dset=cfg.ALL):
     print('-'*100)
     print('get_image_list:proj_name,',proj_name)
     print('-'*100)
@@ -575,7 +574,7 @@ def save_obj_detect_image(id_, project, annos, dset=None):
     data.update_counts(fold["name"])
 
 
-def get_image(project, id_, dset=cfg.UNLABELED):
+def get_image(project, id_, dset=cfg.ALL):
     fold = data.load_fold(project)
     return make_image(id_, fold, dset)
 
@@ -584,7 +583,7 @@ def get_images(image_list):
     return map(get_image, image_list.images)
 
 
-def get_image_single(project, id_, dset=cfg.UNLABELED):
+def get_image_single(project, id_, dset=cfg.ALL):
     fpath = data.get_fpath(project, cfg.FOLD_FNAME)
     fold = data.load_fold(fpath)
     return make_image(id_, fold, dset)
