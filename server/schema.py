@@ -544,6 +544,7 @@ def get_image_list(proj_name, dset=cfg.ALL):
 
 
 def get_random_dset(val_ratio=cfg.VAL_FOLD_RATIO):
+    print('get_random_dset')
     if random.random() <= val_ratio:
         return cfg.VAL
     return cfg.TRAIN
@@ -551,6 +552,7 @@ def get_random_dset(val_ratio=cfg.VAL_FOLD_RATIO):
 
 def save_image_data(fold, id_, tags, dset=None, 
                     model_tags=None, model_probs=None):
+    print('save_image_data')
     dset = get_random_dset() if dset is None else dset
     entry = data.make_entry(tags, model_tags, model_probs)
     data.move_unlabeled_to_labeled(fold, dset, id_, entry)
@@ -559,6 +561,7 @@ def save_image_data(fold, id_, tags, dset=None,
 
 
 def save_obj_detect_image(id_, project, annos, dset=None):
+    print('save_obj_detect_image')
     dset = get_random_dset() if dset is None else dset
     entry = data.make_obj_detect_entry(annos)
     fold = data.load_fold(project)
@@ -575,21 +578,25 @@ def save_obj_detect_image(id_, project, annos, dset=None):
 
 
 def get_image(project, id_, dset=cfg.ALL):
+    print('get_image')
     fold = data.load_fold(project)
     return make_image(id_, fold, dset)
 
 
 def get_images(image_list):
+    print("get_images")
     return map(get_image, image_list.images)
 
 
 def get_image_single(project, id_, dset=cfg.ALL):
+    print("get)image_single")
     fpath = data.get_fpath(project, cfg.FOLD_FNAME)
     fold = data.load_fold(fpath)
     return make_image(id_, fold, dset)
 
 
 def update_tags(id_, project, tags):
+    print('update_tags')
     if len(tags) > 0:
         fold = data.load_fold(project)
         save_image_data(fold, id_, tags)
