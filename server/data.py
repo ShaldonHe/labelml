@@ -93,13 +93,14 @@ def load_model_preds(img_id, project):
 
 
 def load_obj_detect_img(img_id, project, include_preds=True):
-    print(img_id, project, include_preds)
+    print('load_obj_detect_img:',img_id, project, include_preds)
     fold = load_fold(project)
     for dset in [cfg.VAL, cfg.TRAIN, cfg.UNLABELED]:
         if img_id in fold[dset]:
-            img = fold[dset][img_id]
-            if dset == cfg.UNLABELED and include_preds:
-                img = load_model_preds(img_id, project)
+            img = load_model_preds(img_id, project)
+            # img = fold[dset][img_id]
+            # if dset == cfg.UNLABELED and include_preds:
+            #     img = load_model_preds(img_id, project)
             return img
     return None
 
