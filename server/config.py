@@ -14,12 +14,6 @@ BASE_PATH = '{}/server'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH, PROJECT_NAME, 'images')
 print(MEDIA_PATH)
-# DEFAULT_LABELS = (
-#     'aeroplane', 'bicycle', 'bird', 'boat',
-#     'bottle', 'bus', 'car', 'cat', 'chair',
-#     'cow', 'diningtable', 'dog', 'horse',
-#     'motorbike', 'person', 'pottedplant',
-#     'sheep', 'sofa', 'train', 'tvmonitor')
 
 DEFAULT_LABELS = (
     'aeroplane', 'biker', 'bird', 'boat',
