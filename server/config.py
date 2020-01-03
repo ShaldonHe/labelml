@@ -5,7 +5,6 @@ import os
 # HOST = '10.0.0.21'
 # HOST = 'localhost'
 
-
 PROJECT_NAME = 'skin' #'VOC2007' #'oxfordpets'
 # BASE_PATH = '/home/sheldon/Document/code/beyes/labelml/server' #'/bigguy/data' #'/Users/bfortuner/data'
 cw_dir = os.getcwd() 
