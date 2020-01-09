@@ -50,7 +50,6 @@
     <v-btn icon to="/">
       <v-icon>arrow_back</v-icon>
     </v-btn>
-      <!-- <v-toolbar-title>皮肤病理切片</v-toolbar-title> -->
       <v-toolbar-title>{{projectname}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
