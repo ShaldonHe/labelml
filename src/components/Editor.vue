@@ -50,7 +50,8 @@
     <v-btn icon to="/">
       <v-icon>arrow_back</v-icon>
     </v-btn>
-      <v-toolbar-title>皮肤病理切片</v-toolbar-title>
+      <!-- <v-toolbar-title>皮肤病理切片</v-toolbar-title> -->
+      <v-toolbar-title>{{projectname}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-flex xs3 sm3>
@@ -264,7 +265,8 @@ export default {
         { img: 'hangouts.png', title: 'Hangouts' },
         { img: 'messenger.png', title: 'Messenger' },
         { img: 'google.png', title: 'Google+' },
-      ]
+      ],
+      projectname:'贝叶科技标记测试项目'
     }
   },
   
