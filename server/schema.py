@@ -254,6 +254,9 @@ ImageType = GraphQLObjectType(
         'project': GraphQLField(
             GraphQLNonNull(GraphQLString),
         ),
+        'dataset': GraphQLField(
+            GraphQLNonNull(GraphQLString),
+        ),
         'src': GraphQLField(
             GraphQLString
         ),
@@ -318,6 +321,14 @@ ImageListType = GraphQLObjectType(
     name='ImageList',
     fields= {
         'images': GraphQLField(
+            GraphQLList(ImageType)
+        ),
+    }
+)
+DatasetListType = GraphQLObjectType(
+    name='DatsetList',
+    fields= {
+        'dataset': GraphQLField(
             GraphQLList(ImageType)
         ),
     }
@@ -542,6 +553,19 @@ def get_image_list(proj_name, dset=cfg.UNLABELED):
     print(ImageList)
     return ImageList(images=image_data)
 
+def get_dataset_list(proj_name):
+    print('-'*100)
+    print('get_dataset_list:proj_name,',proj_name)
+    print('-'*100)
+    if os.path.exists(data.get_fpath(proj_name, cfg.RANKINGS_FNAME)):
+        image_data = get_ranked_batch(proj_name, dset)
+    else:
+        image_data = get_random_batch(
+            proj_name, dset, shuffle=True)
+    print(image_data)
+    print(ImageList)
+    return ImageList(images=image_data)
+
 
 def get_random_dset(val_ratio=cfg.VAL_FOLD_RATIO):
     print('get_random_dset')
@@ -649,6 +673,15 @@ QueryRootType = GraphQLObjectType(
                 'project': GraphQLArgument(GraphQLString)
             },
             resolver=lambda root, args, *_: get_image_list(
+                args.get('project')
+            ),
+        ),
+        'datasetList': GraphQLField(
+            DatasetListType,
+            args={
+                'project': GraphQLArgument(GraphQLString)
+            },
+            resolver=lambda root, args, *_: get_dataset_list(
                 args.get('project')
             ),
         ),

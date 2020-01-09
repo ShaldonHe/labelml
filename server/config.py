@@ -51,22 +51,22 @@ class Config(object):
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID', 'password')
     AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', 'password')
+    DATABASE_CNNECTION = 'mongodb://writer:beyes0308@localhost:8000'
     AWS_REGION='us-west-1'
 
-class ProdConfig(Config):
-    # ENDPOINT = 'http://labelml.us-west-1.elasticbeanstalk.com'
-    ENDPOINT = 'http://localhost:5000'
+class ProductConfig(Config):
+    ENDPOINT = 'http://0.0.0.0:80'
     DEBUG = False
 
 class DevConfig(Config):
     ENDPOINT = 'http://localhost:5000'
     DEBUG = True
 
-#config = globals()[os.getenv('LABELML_ENV', 'ProdConfig')]
+#config = globals()[os.getenv('LABELML_ENV', 'ProductConfig')]
 env = os.getenv('LABELML_ENV', 'dev')
 print ("ENV " + env)
-if env == 'prod':
-    ENDPOINT = ProdConfig.ENDPOINT
+if env == 'product':
+    ENDPOINT = ProductConfig.ENDPOINT
 else:
     ENDPOINT = DevConfig.ENDPOINT
 
