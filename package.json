@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "ant-design-vue": "^1.4.10",
     "apollo-client": "^1.9.2",
     "fabric": "^2.0.0-beta.6",
     "graphql-tag": "^2.4.2",
