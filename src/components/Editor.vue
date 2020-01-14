@@ -1,55 +1,5 @@
 <template>
   <v-app id="example-1" dark>
-    <v-navigation-drawer permanent clipped dark :mini-variant="mini" right >
-      <v-list class="pt-0">
-        <v-list-tile @click="setSelectMode()" v-tooltip:bottom="{ html: '选择' }">
-          <v-icon large>open_with</v-icon>
-        </v-list-tile>
-        <v-list-tile @click="setDrawMode()" v-tooltip:bottom="{ html: '矩形:笔画' }">
-          <v-icon large>crop_free</v-icon>
-        </v-list-tile>
-        <v-list-tile @click="setExtremeClickMode()" v-tooltip:bottom="{ html: '矩形:点击' }">
-          <v-icon large>filter_center_focus</v-icon>
-        </v-list-tile>
-        <v-list-tile @click="setPolygonMode()" v-tooltip:bottom="{ html: '多边形' }">
-          <v-icon large>mode_edit</v-icon>
-        </v-list-tile>
-        <v-list-tile @click="toggleUnselectedVisibility(true)" v-tooltip:bottom="{ html: '隐藏模式' }">
-          <v-icon large>layers</v-icon>
-        </v-list-tile>
-        <v-list-tile @click="setZoomMode()" v-tooltip:bottom="{ html: '放缩模式' }">
-          <v-icon large>zoom_in</v-icon>
-        </v-list-tile>
-        <!-- <v-list-tile @click="resetZoom()" v-tooltip:bottom="{ html: 'Reset zoom' }">
-          <v-icon large>zoom_out</v-icon>
-        </v-list-tile>-->
-        <v-list-tile @click="deleteObject()" v-tooltip:bottom="{ html: '删除' }">
-          <v-icon large>delete</v-icon>
-        </v-list-tile>
-        <v-list-tile to="/" v-tooltip:bottom="{ html: '帮助' }">
-          <v-icon large>help_outline</v-icon>
-        </v-list-tile>
-        <v-list-tile @click v-tooltip:bottom="{ html: '快捷键' }">
-          <v-bottom-sheet v-model="shortcutSheet">
-            <v-icon slot="activator" large>keyboard</v-icon>
-            <v-list two-line subheader>
-              <v-list-tile
-                avatar
-                v-for="shortcut in shortcuts"
-                v-if="shortcut.desc !== null"
-                :key="shortcut.key"
-              >
-                <v-list-tile-content>
-                  <v-list-tile-title>{{shortcut.desc}}</v-list-tile-title>
-                  <v-list-tile-sub-title>{{shortcut.key}}</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-bottom-sheet>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-toolbar fixed class="darken-2" dark>
       <v-btn icon to="/">
         <v-icon>arrow_back</v-icon>
@@ -97,9 +47,59 @@
 
     <main justify="center">
       <v-container>
-        <v-row justify="center">
         <canvas id="c"></canvas>
-        </v-row>
+        <v-navigation-drawer v-model="True" permanent clipped dark :mini-variant="mini" right>
+          <v-list class="pt-0">
+            <v-list-tile @click="setSelectMode()" v-tooltip:bottom="{ html: '选择' }">
+              <v-icon large>open_with</v-icon>
+            </v-list-tile>
+            <v-list-tile @click="setDrawMode()" v-tooltip:bottom="{ html: '矩形:笔画' }">
+              <v-icon large>crop_free</v-icon>
+            </v-list-tile>
+            <v-list-tile @click="setExtremeClickMode()" v-tooltip:bottom="{ html: '矩形:点击' }">
+              <v-icon large>filter_center_focus</v-icon>
+            </v-list-tile>
+            <v-list-tile @click="setPolygonMode()" v-tooltip:bottom="{ html: '多边形' }">
+              <v-icon large>mode_edit</v-icon>
+            </v-list-tile>
+            <v-list-tile
+              @click="toggleUnselectedVisibility(true)"
+              v-tooltip:bottom="{ html: '隐藏模式' }"
+            >
+              <v-icon large>layers</v-icon>
+            </v-list-tile>
+            <v-list-tile @click="setZoomMode()" v-tooltip:bottom="{ html: '放缩模式' }">
+              <v-icon large>zoom_in</v-icon>
+            </v-list-tile>
+            <!-- <v-list-tile @click="resetZoom()" v-tooltip:bottom="{ html: 'Reset zoom' }">
+          <v-icon large>zoom_out</v-icon>
+            </v-list-tile>-->
+            <v-list-tile @click="deleteObject()" v-tooltip:bottom="{ html: '删除' }">
+              <v-icon large>delete</v-icon>
+            </v-list-tile>
+            <v-list-tile to="/" v-tooltip:bottom="{ html: '帮助' }">
+              <v-icon large>help_outline</v-icon>
+            </v-list-tile>
+            <v-list-tile @click v-tooltip:bottom="{ html: '快捷键' }">
+              <v-bottom-sheet v-model="shortcutSheet">
+                <v-icon slot="activator" large>keyboard</v-icon>
+                <v-list two-line subheader>
+                  <v-list-tile
+                    avatar
+                    v-for="shortcut in shortcuts"
+                    v-if="shortcut.desc !== null"
+                    :key="shortcut.key"
+                  >
+                    <v-list-tile-content>
+                      <v-list-tile-title>{{shortcut.desc}}</v-list-tile-title>
+                      <v-list-tile-sub-title>{{shortcut.key}}</v-list-tile-sub-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                </v-list>
+              </v-bottom-sheet>
+            </v-list-tile>
+          </v-list>
+        </v-navigation-drawer>
       </v-container>
     </main>
 
