@@ -107,7 +107,7 @@
       <span
         class="white--text"
         style="text-align: center; margin:0 auto"
-      >Copyright 2020 © 北京贝叶科技有限公司</span>
+      >Copyright {{year}} © {{corporation}}</span>
     </v-footer>
   </v-app>
 </template>
@@ -115,6 +115,8 @@
 <script>
 import { fabric } from "fabric";
 import RangeSlider from "vue-range-slider";
+import Footer from "@/components/Footer";
+// import Home from '@/components/Home'
 
 import keys from "../constants/keyboard.js";
 
@@ -272,7 +274,9 @@ export default {
         { img: "messenger.png", title: "Messenger" },
         { img: "google.png", title: "Google+" }
       ],
-      projectname: "贝叶科技标记测试项目"
+      projectname: "贝叶科技标记测试项目",
+      year: "2020",
+      corporation: "北京贝叶科技有限公司"
     };
   },
 
