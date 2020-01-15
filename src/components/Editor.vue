@@ -9,10 +9,10 @@
 
       <v-flex xs3 sm3>
         <v-slider
-          label="Accelerate:"
-          v-on="adjustThreshold()"
+          label="尺寸:"
           v-model="sliderValue"
-          :step="5"
+          step = "1"
+          :max= 7
           snap
           thumb-label
           dark
@@ -48,7 +48,7 @@
     <main justify="center">
       <v-container>
         <canvas id="c"></canvas>
-        <v-navigation-drawer v-model="True" permanent clipped dark :mini-variant="mini" right>
+        <v-navigation-drawer permanent clipped dark :mini-variant="mini">
           <v-list class="pt-0">
             <v-list-tile @click="setSelectMode()" v-tooltip:bottom="{ html: '选择' }">
               <v-icon large>open_with</v-icon>
@@ -242,7 +242,7 @@ export default {
       id: "",
       image: {},
       selectedLabel: null,
-      sliderValue: 100,
+      sliderValue: 1,
       clickRadius: 4,
       cornerSize: 7,
       extremeClickRadius: 4,
