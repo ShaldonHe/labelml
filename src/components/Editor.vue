@@ -1,6 +1,6 @@
 <template>
   <v-app id="example-1" dark>
-    <v-toolbar fixed class="darken-2" dark>
+    <v-toolbar dense floating class="darken-2" dark>
       <v-btn icon to="/">
         <v-icon>arrow_back</v-icon>
       </v-btn>
@@ -98,6 +98,49 @@
                 </v-list>
               </v-bottom-sheet>
             </v-list-tile>
+          </v-list>
+        </v-navigation-drawer>
+        <v-navigation-drawer
+          v-model="drawer"
+          :color="color"
+          :expand-on-hover="expandOnHover"
+          :mini-variant="miniVariant"
+          :right="right"
+          :src="bg"
+          absolute
+          dark
+        >
+          <v-list
+            dense
+            nav
+            class="py-0"
+          >
+            <v-list-item two-line>
+              <v-list-item-avatar>
+                <img src="https://randomuser.me/api/portraits/men/99.jpg">
+              </v-list-item-avatar>
+  
+              <v-list-item-content>
+                <v-list-item-title>应用</v-list-item-title>
+                <v-list-item-subtitle>子标题</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+  
+            <v-divider></v-divider>
+  
+            <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              link
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+  
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </v-navigation-drawer>
       </v-container>
@@ -274,12 +317,34 @@ export default {
         { img: "messenger.png", title: "Messenger" },
         { img: "google.png", title: "Google+" }
       ],
+      items: [
+        { title: '面板', icon: 'mdi-view-dashboard' },
+        { title: '照片', icon: 'mdi-image' },
+        { title: '关于', icon: 'mdi-help-box' },
+      ],
+
+      drawer: true,
+      color: 'primary',
+      colors: [
+        'primary',
+        'blue',
+        'success',
+        'red',
+        'teal',
+      ],
+      background: true,
+      expandOnHover: true,
+      right: true,
       projectname: "贝叶科技标记测试项目",
       year: "2020",
       corporation: "北京贝叶科技有限公司"
     };
   },
-
+  computed: {
+    bg () {
+      return this.background ? 'https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg' : undefined
+    },
+  },
   apollo: {
     nextObjDetectImage: {
       query: NEXT_OBJ_DETECT_IMG_QUERY,
