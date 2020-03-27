@@ -159,7 +159,7 @@
 import { fabric } from "fabric";
 import RangeSlider from "vue-range-slider";
 import Footer from "@/components/Footer";
-// import Home from '@/components/Home'
+import Home from '@/components/Home'
 
 import keys from "../constants/keyboard.js";
 

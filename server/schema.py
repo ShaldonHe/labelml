@@ -589,14 +589,6 @@ def save_obj_detect_image(id_, project, annos, dset=None):
     dset = get_random_dset() if dset is None else dset
     entry = data.make_obj_detect_entry(annos)
     fold = data.load_fold(project)
-    # if id_ in fold[cfg.UNLABELED]:
-    #     data.move_unlabeled_to_labeled(fold, dset, id_, entry)
-    # else:
-    #     for dset in [cfg.VAL, cfg.TRAIN]:
-    #         if id_ in fold[dset]:
-    #             fold[dset][id_] = entry
-    #             break
-    ## NOT SAVING FOR DEMO !!!!!! ##
     data.save_fold(fold)
     data.update_counts(fold["name"])
 
