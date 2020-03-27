@@ -5,19 +5,14 @@ import os
 # HOST = '10.0.0.21'
 # HOST = 'localhost'
 
-
 PROJECT_NAME = 'skin' #'VOC2007' #'oxfordpets'
-BASE_PATH = '/home/sheldon/Document/code/beyes/labelml/server' #'/bigguy/data' #'/Users/bfortuner/data'
-# BASE_PATH = '/home/sheldon/Documents/BeYes-Annotation/server' #'/bigguy/data' #'/Users/bfortuner/data'
+# BASE_PATH = '/home/sheldon/Document/code/beyes/labelml/server' #'/bigguy/data' #'/Users/bfortuner/data'
+cw_dir = os.getcwd() 
+print('Current Work Dir:',cw_dir)
+BASE_PATH = '{}/server'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH, PROJECT_NAME, 'images')
 print(MEDIA_PATH)
-# DEFAULT_LABELS = (
-#     'aeroplane', 'bicycle', 'bird', 'boat',
-#     'bottle', 'bus', 'car', 'cat', 'chair',
-#     'cow', 'diningtable', 'dog', 'horse',
-#     'motorbike', 'person', 'pottedplant',
-#     'sheep', 'sofa', 'train', 'tvmonitor')
 
 DEFAULT_LABELS = (
     'aeroplane', 'biker', 'bird', 'boat',
@@ -56,22 +51,22 @@ class Config(object):
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID', 'password')
     AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', 'password')
+    DATABASE_CNNECTION = 'mongodb://writer:beyes0308@localhost:8000'
     AWS_REGION='us-west-1'
 
-class ProdConfig(Config):
-    # ENDPOINT = 'http://labelml.us-west-1.elasticbeanstalk.com'
-    ENDPOINT = 'http://localhost:5000'
+class ProductConfig(Config):
+    ENDPOINT = 'http://0.0.0.0:80'
     DEBUG = False
 
 class DevConfig(Config):
     ENDPOINT = 'http://localhost:5000'
     DEBUG = True
 
-#config = globals()[os.getenv('LABELML_ENV', 'ProdConfig')]
+#config = globals()[os.getenv('LABELML_ENV', 'ProductConfig')]
 env = os.getenv('LABELML_ENV', 'dev')
 print ("ENV " + env)
-if env == 'prod':
-    ENDPOINT = ProdConfig.ENDPOINT
+if env == 'product':
+    ENDPOINT = ProductConfig.ENDPOINT
 else:
     ENDPOINT = DevConfig.ENDPOINT
 
