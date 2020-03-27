@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_graphql import GraphQLView
 from schema import Schema
-from flask import Response, request, abort, send_from_directory
+from flask import Response, request, abort,jsonify, send_from_directory
 from io import StringIO
 
 import config as cfg
