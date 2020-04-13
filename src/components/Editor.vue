@@ -856,7 +856,6 @@ export default {
         endCircle.left + endCircle.radius,
         endCircle.top + endCircle.radius
       ];
-      //console.log("coords", coords);
       return new fabric.Line(coords, {
         id: this.getRandId(),
         fill: "white",
@@ -866,7 +865,6 @@ export default {
         hasControls: false,
         labelType: POLY_LINE_LABEL,
         score: 1.0,
-        //https://www.w3schools.com/cssref/playit.asp?filename=playcss_cursor&preval=context-menu
         hoverCursor: "default"
       });
     },
