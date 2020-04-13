@@ -8,15 +8,7 @@
       <v-spacer></v-spacer>
 
       <v-flex xs3 sm3>
-        <v-slider
-          label="尺寸:"
-          v-model="sliderValue"
-          step = "1"
-          :max= 7
-          snap
-          thumb-label
-          dark
-        ></v-slider>
+        <v-slider label="尺寸:" v-model="sliderValue" step="1" :max="7" snap thumb-label dark></v-slider>
       </v-flex>
 
       <v-flex xs3 sm3>
@@ -110,33 +102,25 @@
           absolute
           dark
         >
-          <v-list
-            dense
-            nav
-            class="py-0"
-          >
+          <v-list dense nav class="py-0">
             <v-list-item two-line>
               <v-list-item-avatar>
-                <img src="https://randomuser.me/api/portraits/men/99.jpg">
+                <img src="https://randomuser.me/api/portraits/men/99.jpg" />
               </v-list-item-avatar>
-  
+
               <v-list-item-content>
                 <v-list-item-title>应用</v-list-item-title>
                 <v-list-item-subtitle>子标题</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-  
+
             <v-divider></v-divider>
-  
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
+
+            <v-list-item v-for="item in items" :key="item.title" link>
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
-  
+
               <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
@@ -159,7 +143,7 @@
 import { fabric } from "fabric";
 import RangeSlider from "vue-range-slider";
 import Footer from "@/components/Footer";
-import Home from '@/components/Home'
+import Home from "@/components/Home";
 
 import keys from "../constants/keyboard.js";
 
@@ -318,20 +302,14 @@ export default {
         { img: "google.png", title: "Google+" }
       ],
       items: [
-        { title: '面板', icon: 'mdi-view-dashboard' },
-        { title: '照片', icon: 'mdi-image' },
-        { title: '关于', icon: 'mdi-help-box' },
+        { title: "面板", icon: "mdi-view-dashboard" },
+        { title: "照片", icon: "mdi-image" },
+        { title: "关于", icon: "mdi-help-box" }
       ],
 
       drawer: true,
-      color: 'primary',
-      colors: [
-        'primary',
-        'blue',
-        'success',
-        'red',
-        'teal',
-      ],
+      color: "primary",
+      colors: ["primary", "blue", "success", "red", "teal"],
       background: true,
       expandOnHover: true,
       right: true,
@@ -341,9 +319,11 @@ export default {
     };
   },
   computed: {
-    bg () {
-      return this.background ? 'https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg' : undefined
-    },
+    bg() {
+      return this.background
+        ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        : undefined;
+    }
   },
   apollo: {
     nextObjDetectImage: {
