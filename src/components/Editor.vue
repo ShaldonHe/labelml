@@ -4,7 +4,6 @@
       <v-btn icon to="/">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <!-- <v-toolbar-title>{{project}}</v-toolbar-title> -->
       <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
