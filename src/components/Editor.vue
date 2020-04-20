@@ -39,7 +39,7 @@
     </v-toolbar>
 
     <main justify="center">
-      <v-container>
+      <v-container style = "margin: auto;">
         <canvas id="c"></canvas>
         <v-navigation-drawer permanent clipped dark :mini-variant="mini">
           <v-list class="pt-0">
@@ -102,7 +102,7 @@
           dark
         >
           <v-list dense nav class="py-0">
-            <v-list-item two-line>
+            <v-list-item>
               <v-list-item-avatar>
                 <img src="https://randomuser.me/api/portraits/men/99.jpg" />
               </v-list-item-avatar>

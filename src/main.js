@@ -6,7 +6,6 @@ import router from './router'
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo';
 import Vuetify from 'vuetify'
-// import Footer from "@/components/Footer"
 var config = require('../config')
 import('../node_modules/vuetify/dist/vuetify.min.css')
 
