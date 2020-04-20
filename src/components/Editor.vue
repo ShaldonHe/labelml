@@ -118,7 +118,8 @@
 
             <v-list-item v-for="item in items" :key="item.title" link>
               <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon large>{{ item.icon }}</v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
 
               <v-list-item-content>
@@ -130,12 +131,15 @@
       </v-container>
     </main>
 
-    <v-footer dark>
+    <!-- <v-footer dark>
       <span
         class="white--text"
         style="text-align: center; margin:0 auto"
       >Copyright {{year}} © {{corporation}}</span>
-    </v-footer>
+    </v-footer> -->
+
+    <Footer>
+    </Footer>
   </v-app>
 </template>
 
@@ -256,6 +260,7 @@ var LabeledRect = fabric.util.createClass(fabric.Rect, {
 var canvas;
 var drawRect, origX, origY;
 
+
 export default {
   name: "editor",
   components: {
@@ -287,7 +292,7 @@ export default {
       zoomFactor: 1,
       grabMode: false,
       zoomMode: false,
-      maxZoom: 10,
+      maxZoom: 4,
       minZoom: 0.25,
       drawer: null,
       mini: true,
@@ -302,9 +307,9 @@ export default {
         { img: "google.png", title: "Google+" }
       ],
       items: [
-        { title: "面板", icon: "mdi-view-dashboard" },
-        { title: "照片", icon: "mdi-image" },
-        { title: "关于", icon: "mdi-help-box" }
+        { title: "面板", icon: "open_with" },
+        { title: "照片", icon: "open_with" },
+        { title: "关于", icon: "open_with" }
       ],
 
       drawer: true,
@@ -313,9 +318,7 @@ export default {
       background: true,
       expandOnHover: true,
       right: true,
-      projectname: "贝叶科技标记测试项目",
-      year: "2020",
-      corporation: "北京贝叶科技有限公司"
+      projectname: "贝叶科技标记测试项目"
     };
   },
   computed: {

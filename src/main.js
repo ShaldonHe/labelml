@@ -6,6 +6,7 @@ import router from './router'
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo';
 import Vuetify from 'vuetify'
+// import Footer from "@/components/Footer"
 var config = require('../config')
 import('../node_modules/vuetify/dist/vuetify.min.css')
 
@@ -13,7 +14,7 @@ console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development')
 if (process.env.NODE_ENV === 'development') {
   var ENDPOINT = 'http://localhost:5000';
 } else {
-  var ENDPOINT = 'http://labelml.us-west-1.elasticbeanstalk.com';
+  var ENDPOINT = 'http://ml.beyes.com:11080';
 }
 Vue.config.productionTip = false
 
@@ -31,6 +32,7 @@ Vue.use(VueApollo, {
   apolloClient,
 });
 Vue.use(Vuetify);
+// Vue.component('footer',Footer)
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
   <head>
-      <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+      <link href='static/fonts/default.css' rel="stylesheet">
   </head>
     <router-view></router-view>
   </div>
