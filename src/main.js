@@ -32,7 +32,6 @@ Vue.use(VueApollo, {
   apolloClient,
 });
 Vue.use(Vuetify);
-// Vue.component('footer',Footer)
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
