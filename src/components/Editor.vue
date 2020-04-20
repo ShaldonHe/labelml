@@ -4,7 +4,8 @@
       <v-btn icon to="/">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <v-toolbar-title>{{projectname}}</v-toolbar-title>
+      <!-- <v-toolbar-title>{{project}}</v-toolbar-title> -->
+      <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <!-- <v-flex xs3 sm3>
@@ -96,9 +97,7 @@
           v-model="drawer"
           :color="color"
           :expand-on-hover="expandOnHover"
-          :mini-variant="miniVariant"
           :right="right"
-          :src="bg"
           absolute
           dark
         >
@@ -318,7 +317,12 @@ export default {
       background: true,
       expandOnHover: true,
       right: true,
-      projectname: "贝叶科技标记测试项目"
+      projectinfo:
+      {
+        name: "贝叶科技标记测试项目",
+        id: "贝叶科技标记测试项目"
+      }
+      
     };
   },
   computed: {

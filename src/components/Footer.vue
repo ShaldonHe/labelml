@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-    name: "Footer",
+    name: "footer",
     data () {
         return {
             date: "2020",

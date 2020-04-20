@@ -34,7 +34,7 @@ import axios from "axios";
 import Url from "../../common/request/api";
 let svg, canvas;
 export default {
-  name: "index",
+  name: "annotator",
   data() {
     return {
       currentFile: {
