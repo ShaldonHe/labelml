@@ -26,7 +26,7 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="Login"
+                    label="登陆"
                     name="login"
                     prepend-icon="person"
                     type="text"
@@ -34,7 +34,7 @@
 
                   <v-text-field
                     id="password"
-                    label="Password"
+                    label="密码"
                     name="password"
                     prepend-icon="lock"
                     type="password"
