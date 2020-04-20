@@ -73,7 +73,7 @@
             <v-list-tile to="/" v-tooltip:bottom="{ html: '帮助' }">
               <v-icon large>help_outline</v-icon>
             </v-list-tile>
-            <v-list-tile @click v-tooltip:bottom="{ html: '快捷键' }">
+            <v-list-tile v-tooltip:bottom="{ html: '快捷键' }">
               <v-bottom-sheet v-model="shortcutSheet">
                 <v-icon slot="activator" large>keyboard</v-icon>
                 <v-list two-line subheader>
@@ -83,7 +83,7 @@
                     v-if="shortcut.desc !== null"
                     :key="shortcut.key"
                   >
-                    <v-list-tile-content>
+                  <v-list-tile-content>
                       <v-list-tile-title>{{shortcut.desc}}</v-list-tile-title>
                       <v-list-tile-sub-title>{{shortcut.key}}</v-list-tile-sub-title>
                     </v-list-tile-content>
