@@ -7,9 +7,9 @@
       <v-toolbar-title>{{projectname}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-flex xs3 sm3>
+      <!-- <v-flex xs3 sm3>
         <v-slider label="尺寸:" v-model="sliderValue" step="1" :max="7" snap thumb-label dark></v-slider>
-      </v-flex>
+      </v-flex>-->
 
       <v-flex xs3 sm3>
         <v-select
@@ -63,9 +63,9 @@
             <v-list-tile @click="setZoomMode()" v-tooltip:bottom="{ html: '放缩模式' }">
               <v-icon large>zoom_in</v-icon>
             </v-list-tile>
-            <!-- <v-list-tile @click="resetZoom()" v-tooltip:bottom="{ html: 'Reset zoom' }">
-          <v-icon large>zoom_out</v-icon>
-            </v-list-tile>-->
+            <v-list-tile @click="resetZoom()" v-tooltip:bottom="{ html: '放缩还原' }">
+              <v-icon large>zoom_out</v-icon>
+            </v-list-tile>
             <v-list-tile @click="deleteObject()" v-tooltip:bottom="{ html: '删除' }">
               <v-icon large>delete</v-icon>
             </v-list-tile>
