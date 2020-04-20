@@ -27,10 +27,11 @@
 </template>-->
 
 <template>
-<div style="width:100%;">
-  <v-card style="width:400px;" justify="center" >
+<div style="width:100%; align:center;">
+<v-card class="d-flex align-center mb-6`" color="grey lighten-2" flat height="100" style="width:400px; margin: auto; top: 200px;" tile>
+  <v-card class="pa-2" outlined tile >
     <v-toolbar color="primary" dark flat>
-      <v-toolbar-title>登陆</v-toolbar-title>
+      <v-toolbar-title align="center">登陆</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form>
@@ -43,6 +44,7 @@
       <v-btn color="primary">登陆</v-btn>
     </v-card-actions>
   </v-card>
+</v-card>
 </div>
 </template>
 
