@@ -6,10 +6,12 @@ import router from './router'
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo';
 import Vuetify from 'vuetify'
+// import VList from 'vuetify/src/components/VList'
 
 var config = require('../config')
 // import 'vuetify/dist/vuetify.min.css'
-import('../node_modules/vuetify/dist/vuetify.min.css')
+import('../node_modules/vuetify/dist/vuetify.css')
+// import('../node_modules/vuetify/dist/vuetify.')
 
 console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development')
 if (process.env.NODE_ENV === 'development') {
@@ -48,7 +50,7 @@ new Vue({
   router,
   template: '<App/>',
   components: { 
-    App,
-    
-  }
+    App
+  },
+  vuetify: new Vuetify()
 })

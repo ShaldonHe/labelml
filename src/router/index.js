@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Editor from '@/components/Editor'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
-import GoogleContact from '@/components/GoogleContact'
+import Contact from '@/components/Contact'
 
 Vue.use(Router)
 
@@ -28,7 +28,7 @@ export default new Router({
     { 
       path: '/contact', 
       name: 'contact',
-      component: GoogleContact,
+      component: Contact,
   },
   ]
 })

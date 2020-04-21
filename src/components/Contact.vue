@@ -120,17 +120,19 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-Vue.use(Vuetify)
+// import Vue from 'vue'
+// import VList from '/vuetify/src/components/VList'
+// Vue.use(VList)
+// import VList from VListVue
+// import VList from 'vuetify/src/components/VList/VList.vue';
 
 export default {
-  name:'contact',
+  name:'Contact',
   props: {
     source: String
   },
   components:{
-    Vuetify
+    // VList
   },
   data() {
     return {
