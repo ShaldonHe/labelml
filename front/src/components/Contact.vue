@@ -8,7 +8,7 @@
               <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
             </v-col>
             <v-col cols="6" class="text-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
+              <a href="#!" class="body-2 black--text">编辑</a>
             </v-col>
           </v-row>
           <v-list-group
@@ -47,14 +47,14 @@
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <span class="hidden-sm-and-down">Google Contacts</span>
+        <span class="hidden-sm-and-down">贝叶联系人</span>
       </v-toolbar-title>
       <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
-        label="Search"
+        label="搜索"
         class="hidden-sm-and-down"
       />
       <v-spacer />
@@ -120,55 +120,50 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-// import VList from '/vuetify/src/components/VList'
-// Vue.use(VList)
-// import VList from VListVue
-// import VList from 'vuetify/src/components/VList/VList.vue';
 
 export default {
-  name:'Contact',
+  name: 'Contact',
   props: {
     source: String
   },
-  components:{
+  components: {
     // VList
   },
-  data() {
+  data () {
     return {
       dialog: false,
       drawer: null,
       items: [
-        { icon: "mdi-contacts", text: "Contacts" },
-        { icon: "mdi-history", text: "Frequently contacted" },
-        { icon: "mdi-content-copy", text: "Duplicates" },
+        { icon: 'mdi-contacts', text: '联系人' },
+        { icon: 'mdi-history', text: '最近联系' },
+        { icon: 'mdi-content-copy', text: '重复' },
         {
-          icon: "mdi-chevron-up",
-          "icon-alt": "mdi-chevron-down",
-          text: "Labels",
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          text: '标签',
           model: true,
-          children: [{ icon: "mdi-plus", text: "Create label" }]
+          children: [{ icon: 'mdi-plus', text: '创造标签' }]
         },
         {
-          icon: "mdi-chevron-up",
-          "icon-alt": "mdi-chevron-down",
-          text: "More",
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          text: '更多',
           model: false,
           children: [
-            { text: "Import" },
-            { text: "Export" },
-            { text: "Print" },
-            { text: "Undo changes" },
-            { text: "Other contacts" }
+            { text: '导入' },
+            { text: '导出' },
+            { text: '打印' },
+            { text: '撤销更改' },
+            { text: '其他联系人' }
           ]
         },
-        { icon: "mdi-settings", text: "Settings" },
-        { icon: "mdi-message", text: "Send feedback" },
-        { icon: "mdi-help-circle", text: "Help" },
-        { icon: "mdi-cellphone-link", text: "App downloads" },
-        { icon: "mdi-keyboard", text: "Go to the old version" }
+        { icon: 'mdi-settings', text: '设置' },
+        { icon: 'mdi-message', text: '反馈' },
+        { icon: 'mdi-help-circle', text: '帮助' },
+        { icon: 'mdi-cellphone-link', text: '下载App' },
+        { icon: 'mdi-keyboard', text: '使用旧版本' }
       ]
-    };
+    }
   }
-};
+}
 </script>

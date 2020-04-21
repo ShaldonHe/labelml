@@ -9,8 +9,8 @@ import Vuetify from 'vuetify'
 // import VList from 'vuetify/src/components/VList'
 
 var config = require('../config')
-// import 'vuetify/dist/vuetify.min.css'
-import('../node_modules/vuetify/dist/vuetify.css')
+import '../node_modules/vuetify/dist/vuetify.css'
+// import('../node_modules/vuetify/dist/vuetify.css')
 // import('../node_modules/vuetify/dist/vuetify.')
 
 console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development')

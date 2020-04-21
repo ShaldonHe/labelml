@@ -8,11 +8,12 @@ import json
 from contextlib import closing
 from zipfile import ZipFile, ZIP_DEFLATED
 import re
+import bcolz
 import uuid
 
 
 
-def gen_unique_id(prefix='', length=10):
+def gen_unique_id(prefix='', length=5):
     return prefix + str(uuid.uuid4()).upper().replace('-','')[:length]
 
 
@@ -104,6 +105,15 @@ def save_obj(obj, out_fpath):
 
 def load_obj(fpath):
     return pickle.load(open(fpath, 'rb'))
+
+
+def save_bcolz_array(fpath, arr):
+    c=bcolz.carray(arr, rootdir=fpath, mode='w')
+    c.flush()
+
+
+def load_bcolz_array(fpath):
+    return bcolz.open(fpath)[:]
 
 
 def compress_file(fpath):
