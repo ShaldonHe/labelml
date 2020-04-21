@@ -123,12 +123,15 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)
+
 export default {
   name:'contact',
   props: {
     source: String
   },
-  components:{},
+  components:{
+    Vuetify
+  },
   data() {
     return {
       dialog: false,
