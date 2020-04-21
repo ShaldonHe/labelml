@@ -6,7 +6,9 @@ import router from './router'
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import VueApollo from 'vue-apollo';
 import Vuetify from 'vuetify'
+
 var config = require('../config')
+// import 'vuetify/dist/vuetify.min.css'
 import('../node_modules/vuetify/dist/vuetify.min.css')
 
 console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development')
@@ -45,5 +47,8 @@ new Vue({
   apolloProvider,
   router,
   template: '<App/>',
-  components: { App }
+  components: { 
+    App,
+    
+  }
 })

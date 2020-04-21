@@ -7,10 +7,6 @@
       <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <!-- <v-flex xs3 sm3>
-        <v-slider label="尺寸:" v-model="sliderValue" step="1" :max="7" snap thumb-label dark></v-slider>
-      </v-flex>-->
-
       <v-flex xs3 sm3>
         <v-select
           id="select-label"
@@ -72,7 +68,7 @@
             <v-list-tile to="/" v-tooltip:bottom="{ html: '帮助' }">
               <v-icon large>help_outline</v-icon>
             </v-list-tile>
-            <v-list-tile v-tooltip:bottom="{ html: '快捷键' }">
+            <v-list-tile @click v-tooltip:bottom="{ html: '快捷键' }">
               <v-bottom-sheet v-model="shortcutSheet">
                 <v-icon slot="activator" large>keyboard</v-icon>
                 <v-list two-line subheader>
@@ -82,7 +78,7 @@
                     v-if="shortcut.desc !== null"
                     :key="shortcut.key"
                   >
-                  <v-list-tile-content>
+                    <v-list-tile-content>
                       <v-list-tile-title>{{shortcut.desc}}</v-list-tile-title>
                       <v-list-tile-sub-title>{{shortcut.key}}</v-list-tile-sub-title>
                     </v-list-tile-content>
@@ -129,15 +125,12 @@
       </v-container>
     </main>
 
-    <!-- <v-footer dark>
+    <v-footer dark>
       <span
         class="white--text"
         style="text-align: center; margin:0 auto"
       >Copyright {{year}} © {{corporation}}</span>
-    </v-footer> -->
-
-    <Footer>
-    </Footer>
+    </v-footer>
   </v-app>
 </template>
 
