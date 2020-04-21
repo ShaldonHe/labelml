@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Editor from '@/components/Editor'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import GoogleContact from '@/components/GoogleContact'
 
 Vue.use(Router)
 
@@ -14,13 +15,20 @@ export default new Router({
       component: Editor,
       props: true
     },
-    { path: '/', 
+    { 
+      path: '/', 
       name: 'home',
       component: Home,
     },
-    { path: '/login', 
+    { 
+      path: '/login', 
       name: 'login',
       component: Login,
     },
+    { 
+      path: '/contact', 
+      name: 'contact',
+      component: GoogleContact,
+  },
   ]
 })
