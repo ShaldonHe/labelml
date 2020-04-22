@@ -7,9 +7,9 @@ import os
 
 PROJECT_NAME = 'skin' #'VOC2007' #'oxfordpets'
 # BASE_PATH = '/home/sheldon/Document/code/beyes/labelml/server' #'/bigguy/data' #'/Users/bfortuner/data'
-cw_dir = os.getcwd() 
+cw_dir = __file__[:-len('/config.py')]
 print('Current Work Dir:',cw_dir)
-BASE_PATH = '{}/server'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
+BASE_PATH = '{}'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH, PROJECT_NAME, 'images')
 print(MEDIA_PATH)

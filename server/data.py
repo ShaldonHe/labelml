@@ -52,9 +52,6 @@ def init_dataset(name, input_dir, file_ext, label_names=None):
         if 'reader' in id_:
             print("FOUND!")
         fold['unlabeled'][id_] = None
-    # os.makedirs(get_fpath(name, cfg._FNAME), exist_ok=True)
-    # Path(get_fpath(name, cfg.METRICS_FNAME)).touch()
-    # Path(get_fpath(name, cfg.PREDS_FNAME)).touch()
     utils.files.save_json(get_fpath(name, cfg.FOLD_FNAME), fold)
     return fold
 
