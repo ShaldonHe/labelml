@@ -1,4 +1,4 @@
-# labelml
+# vuetifytest
 
 > A Vue.js project
 
@@ -16,33 +16,6 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-
-## Deploy to Elastic Beanstalk
-
-```
-cd server/
-eb init (if .elasticbeanstalk/ isn't there)
-eb deploy
-```
-
-## Add static files to S3 bucket
-
-```
-npm run build
-```
-
-Copy files in ```dist/```
-
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

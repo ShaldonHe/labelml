@@ -1,5 +1,4 @@
 <template>
-  
 <div id="app">
   <v-app id="inspire">
     <v-content>
@@ -24,7 +23,6 @@
               >
                 <v-toolbar-title class="text-center">登陆</v-toolbar-title>
                 <v-spacer></v-spacer>
-                
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -60,11 +58,11 @@
 <script>
 
 export default {
-  name:'login',
+  name: 'login',
   data () {
     return {
       drawer: null
-      }
     }
+  }
 }
 </script>

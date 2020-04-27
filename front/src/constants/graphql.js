@@ -1,6 +1,5 @@
 import gql from 'graphql-tag'
 
-
 export const SAVE_OBJ_DETECT_IMAGE = gql`
 mutation SaveObjDetectImage($id: String!, $project: String!, 
                             $annotations: [AnnotationInput]) {
@@ -54,7 +53,7 @@ query NextObjDetectImage($project:String!) {
         }
     }
   }
-`;
+`
 
 export const OBJ_DETECT_IMG_QUERY = gql`
 query ObjDetectImageQuery($id:String!, $project:String!) {
@@ -63,7 +62,7 @@ query ObjDetectImageQuery($id:String!, $project:String!) {
         project
         src
         bboxes {
-          	id
+            id
             label
             score
             xmin
@@ -78,7 +77,7 @@ query ObjDetectImageQuery($id:String!, $project:String!) {
         }
     }
   }
-`;
+`
 
 export const OBJ_DETECT_LABEL_OPT_QUERY = gql`
 query ObjDetectLabelOptQuery($project:String!) {
@@ -90,4 +89,4 @@ query ObjDetectLabelOptQuery($project:String!) {
         }
     }
 }
-`;
+`
