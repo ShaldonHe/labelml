@@ -1,127 +1,119 @@
 <template>
   <v-app id='example-1' dark>
-    <v-toolbar dense floating class='darken-2' dark rounded>
+    <v-navigation-drawer v-model='drawer' dark expand-on-hover right clipped rounded app >
+      <v-list dense>
+        <!-- <v-list-item>
+          <v-list-item-avatar>
+            <img src='https://randomuser.me/api/portraits/men/99.jpg' />
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title>应用</v-list-item-title>
+            <v-list-item-subtitle>子标题</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider> -->
+        <v-list-item v-for='item in items' :key='item.title' link>
+          <v-list-item-icon>
+            <v-icon large>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar dense class='darken-2' dark clipped-right="true" clipped-left="true" app>
       <v-btn icon to='/'>
         <v-icon>arrow_back</v-icon>
       </v-btn>
       <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
-      <v-spacer></v-spacer>
-
-      <v-flex xs3 sm3>
-        <v-select
-          id='select-label'
-          prepend-icon='label'
-          v-bind:items='labels'
-          v-model='selectedLabel'
-          label='选择标签'
-          return-object
-          :autocomplete='autocompleteLabels'
-        ></v-select>
-      </v-flex>
-
-      <v-btn icon @click='prevImage()'>
-        <v-icon large>navigate_before</v-icon>
+      <v-spacer/>
+      <v-btn icon large>
+        <v-avatar size="32px" item>
+          <v-img src="static/user-preview.png" alt="user" />
+        </v-avatar>
       </v-btn>
-      <v-btn icon @click='nextImage()'>
-        <v-icon large>navigate_next</v-icon>
-      </v-btn>
-      <v-btn icon @click='save()'>
-        <v-icon large>save</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon large>more_vert</v-icon>
-      </v-btn>
-    </v-toolbar>
-
-    <main justify='center'>
-      <v-container style = 'margin: auto;'>
-        <canvas id='c'></canvas>
-        <v-navigation-drawer permanent clipped dark :mini-variant='mini'>
-          <v-list rounded>
-            <v-list-item @click='setSelectMode()'>
-              <v-icon large>open_with</v-icon>
-            </v-list-item>
-            <v-list-item @click='setDrawMode()'>
-              <v-icon large>crop_free</v-icon>
-            </v-list-item>
-            <v-list-item @click='setExtremeClickMode()'>
-              <v-icon large>filter_center_focus</v-icon>
-            </v-list-item>
-            <v-list-item @click='setPolygonMode()'>
-              <v-icon large>mode_edit</v-icon>
-            </v-list-item>
-            <v-list-item @click='toggleUnselectedVisibility(true)'>
-              <v-icon large>layers</v-icon>
-            </v-list-item>
-            <v-list-item @click='setZoomMode()'>
-              <v-icon large>zoom_in</v-icon>
-            </v-list-item>
-            <v-list-item @click='resetZoom()'>
-              <v-icon large>zoom_out</v-icon>
-            </v-list-item>
-            <v-list-item @click='deleteObject()'>
-              <v-icon large>delete</v-icon>
-            </v-list-item>
-            <v-list-item to='/'>
-                <v-icon large>help_outline</v-icon>
-            </v-list-item>
-            <v-list-item>
-                <v-icon large>keyboard</v-icon>
-              <v-bottom-sheet v-model='shortcutSheet'>
-                <v-list two-line subheader>
-                  <v-list-item
-                    avatar
-                    v-for='shortcut in shortcuts'
-                    v-if='shortcut.desc !== null'
-                    :key='shortcut.key'
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title>{{shortcut.desc}}</v-list-item-title>
-                      <v-list-item-sub-title>{{shortcut.key}}</v-list-item-sub-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-bottom-sheet>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-        <v-navigation-drawer
-          v-model='drawer'
-          :color='color'
-          :expand-on-hover='expandOnHover'
-          :right='right'
-          absolute
-          dark
-        >
-          <v-list dense nav class='py-0'>
-            <v-list-item>
-              <v-list-item-avatar>
-                <img src='https://randomuser.me/api/portraits/men/99.jpg' />
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title>应用</v-list-item-title>
-                <v-list-item-subtitle>子标题</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-divider></v-divider>
-
-            <v-list-item v-for='item in items' :key='item.title' link>
-              <v-list-item-icon>
-                <v-icon large>{{ item.icon }}</v-icon>
-                <v-icon></v-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
+    </v-app-bar>
+    <v-navigation-drawer v-model='drawer' dark expand-on-hover left clipped rounded app>
+    </v-navigation-drawer>
+    <main  style="background-color:black; margin-top:48px;">
+      <v-container>
+        <v-toolbar dark dense floating rounded color='rgba(0,0,0,1)' container>
+          <v-spacer></v-spacer>
+          <v-btn icon @click='setSelectMode()'>
+            <v-icon large>open_with</v-icon>
+          </v-btn>
+          <v-btn icon @click='setDrawMode()'>
+            <v-icon large>crop_free</v-icon>
+          </v-btn>
+          <v-btn icon @click='setExtremeClickMode()'>
+            <v-icon large>filter_center_focus</v-icon>
+          </v-btn>
+          <v-btn icon @click='setPolygonMode()'>
+            <v-icon large>mode_edit</v-icon>
+          </v-btn>
+          <v-btn icon @click='toggleUnselectedVisibility()'>
+            <v-icon large>layers</v-icon>
+          </v-btn>
+          <v-btn icon @click='setZoomMode()'>
+            <v-icon large>zoom_in</v-icon>
+          </v-btn>
+          <v-btn icon @click='resetZoom()'>
+            <v-icon large>zoom_out</v-icon>
+          </v-btn>
+          <v-btn icon @click='deleteObject()'>
+            <v-icon large>delete</v-icon>
+          </v-btn>
+          <v-btn icon to='/'>
+            <v-icon large>help_outline</v-icon>
+          </v-btn>
+          <v-btn icon>
+            <v-icon large>keyboard</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-select
+            id='select-label'
+            prepend-icon='label'
+            v-bind:items='labels'
+            v-model='selectedLabel'
+            label='选择标签'
+            return-object
+            :autocomplete='autocompleteLabels'
+          ></v-select>
+          <v-spacer></v-spacer>
+          <v-btn icon @click='prevImage()'>
+            <v-icon large>navigate_before</v-icon>
+          </v-btn>
+          <v-btn icon @click='nextImage()'>
+            <v-icon large>navigate_next</v-icon>
+          </v-btn>
+          <v-btn icon @click='save()'>
+            <v-icon large>save</v-icon>
+          </v-btn>
+          <v-btn icon>
+            <v-icon large>more_vert</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <canvas id='c' ></canvas>
       </v-container>
     </main>
-
+      <v-bottom-sheet v-model='shortcutSheet'>
+        <v-list two-line subheader>
+          <v-list-item
+            avatar
+            v-for='shortcut in shortcuts'
+            v-if='shortcut.desc !== null'
+            :key='shortcut.key'
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{shortcut.desc}}</v-list-item-title>
+              <v-list-item-sub-title>{{shortcut.key}}</v-list-item-sub-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-bottom-sheet>
     <v-footer dark>
       <span
         class='white--text'
@@ -253,7 +245,6 @@ export default {
   data () {
     return {
       id: '',
-      image: {},
       selectedLabel: null,
       sliderValue: 1,
       clickRadius: 4,
@@ -292,7 +283,9 @@ export default {
         { title: '照片', icon: 'open_with' },
         { title: '关于', icon: 'open_with' }
       ],
-
+      server: {
+        url: 'http://localhost:5000'
+      },
       drawer: true,
       color: 'primary',
       colors: ['primary', 'blue', 'success', 'red', 'teal'],
@@ -301,8 +294,13 @@ export default {
       right: true,
       projectinfo:
       {
-        name: '贝叶科技标记测试项目',
-        id: '贝叶科技标记测试项目'
+        name: '贝叶科技炎症皮肤病理标注项目',
+        id: '贝叶科技标记测试项目',
+        labels: null
+      },
+      dataset: {
+        images: null,
+        index: 0
       },
       footer: {
         year: 2020,
@@ -318,27 +316,14 @@ export default {
     },
     autocompleteLabels: function () {
       return false
+    },
+    image: function () {
+      var result = null
+      if (this.dataset.images === null) result = { src: 'http://localhost:5000/img/skin/skin/8960A' }
+      else result = { src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id }
+      return result
     }
   },
-  // apollo: {
-  //   nextObjDetectImage: {
-  //     query: NEXT_OBJ_DETECT_IMG_QUERY,
-  //     variables () {
-  //       return {
-  //         project: this.project
-  //       }
-  //     },
-  //     result ({ data, loader, networkStatus }) {
-  //       this.image = data.nextObjDetectImage
-  //       this.labels = data.nextObjDetectImage.labels
-  //       this.colors = this.makeColors(this.labels)
-  //       this.selectedLabel = this.labels[0]
-  //       this.initializeCanvas()
-  //       this.loadAnnotations()
-  //     }
-  //   }
-  // },
-
   filters: {
     capitalize: function (value) {
       if (!value) return ''
@@ -349,8 +334,8 @@ export default {
 
   mounted: function () {
     console.log('this is mounted')
-    this.initializeCanvas()
-    this.loadAnnotations()
+    this.initProject()
+    this.initDataset()
   },
 
   created: function () {
@@ -395,6 +380,40 @@ export default {
   },
 
   methods: {
+    initProject: function () {
+      let request = new XMLHttpRequest()
+      request.open('GET', this.server.url + '/project/info/skin')
+      // 返回labels, dataset id, project name, project id
+      request.responseType = 'text'
+      request.send()
+      let self = this
+      request.onload = function () {
+        var dsText = request.response
+        console.log(dsText)
+        self.dataset.images = JSON.parse(dsText)
+        self.dataset.index = 0
+        self.dataset.id = 'skin'
+        self.initializeCanvas()
+        self.loadAnnotations()
+      }
+    },
+    initDataset: function () {
+      let request = new XMLHttpRequest()
+      request.open('GET', this.server.url + '/project/dataset/list/skin')
+      request.responseType = 'text'
+      request.send()
+      let self = this
+      request.onload = function () {
+        var dsText = request.response
+        console.log(dsText)
+        self.dataset.images = JSON.parse(dsText)
+        self.dataset.index = 0
+        self.dataset.id = 'skin'
+        self.initializeCanvas()
+        self.loadAnnotations()
+      }
+    },
+
     makeColors: function (labels) {
       let colorMap = {}
       for (let opt of labels) {
@@ -415,9 +434,10 @@ export default {
       img.onload = function () {
         self.configureCanvas(this.width, this.height)
         self.width = this.width
-        self.height = this.height
+        // self.height = this.height
+        self.height = 960
       }
-      img.src = this.image.src
+      img.src = this.image.src // /img/skin/skin/8960A
     },
 
     configureCanvas: function (width, height) {
@@ -449,7 +469,6 @@ export default {
       if (this.extremeClickMode) {
         canvas.defaultCursor = 'default'
       }
-      // return
     },
 
     objectMovingHandler: function (e) {
