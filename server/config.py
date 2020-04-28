@@ -72,3 +72,6 @@ else:
 
 IMG_ENDPOINT = ENDPOINT + '/img'
 print("IMG", IMG_ENDPOINT)
+projects = {
+    'skin':{'name':'浅层皮肤病理结构标注项目','description':"浅层皮肤病理结构标注项目",'id':'skin','dataset':'skin','labels':['角质层','棘层','真皮乳头层','真皮网状层']}
+}

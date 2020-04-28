@@ -30,6 +30,14 @@ def image(projectID,dsID, imgID):
     print('img_dir,project,filename:',projectID,dsID,imgID)
     return send_from_directory(img_dir, imgID+'.bmp')
 
+@app.route('/project/info/<projectID>')
+def project(projectID):
+    print('ProjectID: ',projectID)
+    if projectID in cfg.projects:
+        return jsonify( cfg.projects[projectID])
+    else:
+        abort(404)
+
 @app.route('/project/dataset/list/<dsname>')
 def dataset_list(dsname):
     img_dir = cfg.MEDIA_PATH

@@ -2,17 +2,6 @@
   <v-app id='example-1' dark>
     <v-navigation-drawer v-model='drawer' dark expand-on-hover right clipped rounded app >
       <v-list dense>
-        <!-- <v-list-item>
-          <v-list-item-avatar>
-            <img src='https://randomuser.me/api/portraits/men/99.jpg' />
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>应用</v-list-item-title>
-            <v-list-item-subtitle>子标题</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider></v-divider> -->
         <v-list-item v-for='item in items' :key='item.title' link>
           <v-list-item-icon>
             <v-icon large>{{ item.icon }}</v-icon>
@@ -24,7 +13,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar dense class='darken-2' dark clipped-right="true" clipped-left="true" app>
+    <v-app-bar dense class='darken-2' dark clipped-right clipped-left app>
       <v-btn icon to='/'>
         <v-icon>arrow_back</v-icon>
       </v-btn>
@@ -126,7 +115,7 @@
           <v-select
             id='select-label'
             prepend-icon='label'
-            v-bind:items='labels'
+            v-bind:items='this.projectinfo.labels'
             v-model='selectedLabel'
             label='选择标签'
             return-object
@@ -350,7 +339,8 @@ export default {
       },
       dataset: {
         images: null,
-        index: 0
+        index: 0,
+        id: null
       },
       footer: {
         year: 2020,
@@ -431,6 +421,7 @@ export default {
 
   methods: {
     initProject: function () {
+      console.log('initProject')
       let request = new XMLHttpRequest()
       request.open('GET', this.server.url + '/project/info/skin')
       // 返回labels, dataset id, project name, project id
@@ -440,11 +431,8 @@ export default {
       request.onload = function () {
         var dsText = request.response
         console.log(dsText)
-        self.dataset.images = JSON.parse(dsText)
-        self.dataset.index = 0
-        self.dataset.id = 'skin'
-        self.initializeCanvas()
-        self.loadAnnotations()
+        self.projectinfo = JSON.parse(dsText)
+        self.dataset.id = self.projectinfo.dataset
       }
     },
     initDataset: function () {
@@ -1263,11 +1251,15 @@ export default {
     },
 
     nextImage: function () {
-      this.$apollo.queries.nextObjDetectImage.refetch()
+      console.log('next Image')
+      this.dataset.index = (this.dataset.index + 1) % this.dataset.images.length
+      this.initializeCanvas()
     },
 
     prevImage: function () {
-      this.$apollo.queries.nextObjDetectImage.refetch()
+      console.log('prev Image')
+      this.dataset.index = (this.dataset.index - 1 + this.dataset.images.length) % this.dataset.images.length
+      this.initializeCanvas()
     },
 
     save: function () {
