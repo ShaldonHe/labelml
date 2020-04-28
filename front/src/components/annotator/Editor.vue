@@ -31,7 +31,7 @@
       <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
       <v-spacer/>
       <v-btn icon large>
-        <v-avatar size="32px" item>
+        <v-avatar size="42px" item>
           <v-img src="static/user-preview.png" alt="user" />
         </v-avatar>
       </v-btn>
