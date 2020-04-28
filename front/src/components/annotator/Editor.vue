@@ -42,36 +42,86 @@
       <v-container>
         <v-toolbar dark dense floating rounded color='rgba(0,0,0,1)' container>
           <v-spacer></v-spacer>
-          <v-btn icon @click='setSelectMode()'>
-            <v-icon large>open_with</v-icon>
-          </v-btn>
-          <v-btn icon @click='setDrawMode()'>
-            <v-icon large>crop_free</v-icon>
-          </v-btn>
-          <v-btn icon @click='setExtremeClickMode()'>
-            <v-icon large>filter_center_focus</v-icon>
-          </v-btn>
-          <v-btn icon @click='setPolygonMode()'>
-            <v-icon large>mode_edit</v-icon>
-          </v-btn>
-          <v-btn icon @click='toggleUnselectedVisibility()'>
-            <v-icon large>layers</v-icon>
-          </v-btn>
-          <v-btn icon @click='setZoomMode()'>
-            <v-icon large>zoom_in</v-icon>
-          </v-btn>
-          <v-btn icon @click='resetZoom()'>
-            <v-icon large>zoom_out</v-icon>
-          </v-btn>
-          <v-btn icon @click='deleteObject()'>
-            <v-icon large>delete</v-icon>
-          </v-btn>
-          <v-btn icon to='/'>
-            <v-icon large>help_outline</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon large>keyboard</v-icon>
-          </v-btn>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setSelectMode()' v-on="on">
+                <v-icon large>open_with</v-icon>
+              </v-btn>
+            </template>
+            <span>选择模式</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setDrawMode()'  v-on="on">
+                <v-icon large>crop_free</v-icon>
+              </v-btn>
+            </template>
+            <span>矩形标注</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setExtremeClickMode()' v-on="on">
+                <v-icon large>filter_center_focus</v-icon>
+              </v-btn>
+            </template>
+            <span>快捷矩形</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setPolygonMode()'  v-on="on">
+                <v-icon large>mode_edit</v-icon>
+              </v-btn>
+            </template>
+            <span>多边形标注</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='toggleUnselectedVisibility()'  v-on="on">
+                <v-icon large>layers</v-icon>
+              </v-btn>
+            </template>
+            <span>隐藏模式</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setZoomMode()'  v-on="on">
+                <v-icon large>zoom_in</v-icon>
+              </v-btn>
+            </template>
+            <span>放大</span>
+          </v-tooltip>
+           <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='resetZoom()' v-on="on">
+                <v-icon large>zoom_out</v-icon>
+              </v-btn>
+            </template>
+            <span>重设大小</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='deleteObject()'  v-on="on">
+                <v-icon large>delete</v-icon>
+              </v-btn>
+            </template>
+            <span>删除</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon to='/'  v-on="on">
+                <v-icon large>help_outline</v-icon>
+              </v-btn>
+            </template>
+            <span>帮助</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon  v-on="on">
+                <v-icon large>keyboard</v-icon>
+              </v-btn>
+            </template>
+            <span>快捷键</span>
+          </v-tooltip>
           <v-spacer></v-spacer>
           <v-select
             id='select-label'
