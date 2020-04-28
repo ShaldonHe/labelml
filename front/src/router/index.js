@@ -46,7 +46,7 @@ export default new Router({
   },
   {
     path: '/project/:project',
-    name: 'editor',
+    name: 'project',
     component: () => import('@/components/annotator/Editor'),
     props: true
   },
@@ -57,34 +57,8 @@ export default new Router({
   },
   {
     path: '/viewer/:project',
-    name: 'Viewer',
+    name: 'viewer',
     component: () => import('@/components/project/Viewer')
   }
   ]
 })
-
-// export default new Router({
-//   routes: [
-
-//     {
-//       path: '/login',
-//       name: 'login',
-//       component: Login
-//     },
-//     {
-//       path: '/contact',
-//       name: 'Contact',
-//       component: Contact
-//     },
-//     {
-//       path: '/viewer/:project',
-//       name: 'Viewer',
-//       component: Viewer
-//     },
-//     {
-//       path: '/regist',
-//       name: 'Regist',
-//       component: Regist
-//     }
-//   ]
-// })

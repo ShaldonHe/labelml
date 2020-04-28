@@ -137,7 +137,7 @@ import { fabric } from 'fabric'
 import keys from '@/constants/keyboard.js'
 
 // import 'vue-range-slider/dist/vue-range-slider.css'
-import { SAVE_OBJ_DETECT_IMAGE, NEXT_OBJ_DETECT_IMG_QUERY } from '@/constants/graphql'
+// import { SAVE_OBJ_DETECT_IMAGE, NEXT_OBJ_DETECT_IMG_QUERY } from '@/constants/graphql'
 // import { OBJ_DETECT_IMG_QUERY, OBJ_DETECT_LABEL_OPT_QUERY, SAVE_OBJ_DETECT_IMAGE, NEXT_OBJ_DETECT_IMG_QUERY } from '../constants/graphql'
 
 const BOX_LABEL = 'box'
@@ -320,24 +320,24 @@ export default {
       return false
     }
   },
-  apollo: {
-    nextObjDetectImage: {
-      query: NEXT_OBJ_DETECT_IMG_QUERY,
-      variables () {
-        return {
-          project: this.project
-        }
-      },
-      result ({ data, loader, networkStatus }) {
-        this.image = data.nextObjDetectImage
-        this.labels = data.nextObjDetectImage.labels
-        this.colors = this.makeColors(this.labels)
-        this.selectedLabel = this.labels[0]
-        this.initializeCanvas()
-        this.loadAnnotations()
-      }
-    }
-  },
+  // apollo: {
+  //   nextObjDetectImage: {
+  //     query: NEXT_OBJ_DETECT_IMG_QUERY,
+  //     variables () {
+  //       return {
+  //         project: this.project
+  //       }
+  //     },
+  //     result ({ data, loader, networkStatus }) {
+  //       this.image = data.nextObjDetectImage
+  //       this.labels = data.nextObjDetectImage.labels
+  //       this.colors = this.makeColors(this.labels)
+  //       this.selectedLabel = this.labels[0]
+  //       this.initializeCanvas()
+  //       this.loadAnnotations()
+  //     }
+  //   }
+  // },
 
   filters: {
     capitalize: function (value) {
@@ -348,7 +348,9 @@ export default {
   },
 
   mounted: function () {
-    // return
+    console.log('this is mounted')
+    this.initializeCanvas()
+    this.loadAnnotations()
   },
 
   created: function () {
@@ -629,11 +631,11 @@ export default {
       drawRect.setCoords()
       drawRect.selectable = false
       // let copy = fabric.util.object.clone(drawRect)
-      // canvas.remove(drawRect)
-      // canvas.add(drawRect)
+      canvas.remove(drawRect)
+      canvas.add(drawRect)
       drawRect = null
       canvas.renderAll()
-      // this.setSelectMode()
+      this.setSelectMode()
     },
 
     saveExtremeClick: function (e) {
@@ -753,7 +755,7 @@ export default {
       // Update labels.json
       this.exitPolygonMode()
       this.setPolygonMode()
-      // canvas.setActiveObject(polygon)
+      canvas.setActiveObject(polygon)
     },
 
     adjustPolygonClick: function (e) {
@@ -1089,10 +1091,10 @@ export default {
         .toString(36)
         .substr(2, 10)
     },
-    // deleteObject: function() {
-    //   let obj = canvas.getActiveObject()
-    //   canvas.remove(obj)
-    // },
+    deleteObject: function () {
+      let obj = canvas.getActiveObject()
+      canvas.remove(obj)
+    },
 
     deselectObject: function () {
       canvas.discardActiveObject()
@@ -1202,18 +1204,18 @@ export default {
     save: function () {
       let annos = this.extractAnnotations()
       console.log('Saving annos', annos)
-      this.$apollo
-        .mutate({
-          mutation: SAVE_OBJ_DETECT_IMAGE,
-          variables: {
-            id: this.image.id,
-            project: this.project,
-            annotations: annos
-          }
-        })
-        .then(data => {
-          this.$apollo.queries.nextObjDetectImage.refetch()
-        })
+      // this.$apollo
+      //   .mutate({
+      //     mutation: SAVE_OBJ_DETECT_IMAGE,
+      //     variables: {
+      //       id: this.image.id,
+      //       project: this.project,
+      //       annotations: annos
+      //     }
+      //   })
+      //   .then(data => {
+      //     this.$apollo.queries.nextObjDetectImage.refetch()
+      //   })
     },
 
     getBoxScore: function (id) {
@@ -1289,31 +1291,6 @@ export default {
       canvas.setActiveObject(box)
       canvas.renderAll()
     },
-
-    deleteObject: function () {
-      let obj = canvas.getActiveObject()
-      if (obj !== undefined && obj !== null) {
-        if (obj._objects instanceof Array) {
-          if (this.polygonMode) {
-            this.exitPolygonMode()
-            this.setPolygonMode()
-          }
-          if (obj._objects.length > 0) {
-            for (let i in obj._objects) {
-              canvas.remove(obj._objects[i])
-            }
-          }
-        } else if (this.polygonMode) {
-          this.deletePolygonClick(obj)
-          return
-        } else {
-          canvas.remove(obj)
-        }
-        canvas.renderAll()
-        this.setSelectMode()
-      }
-    },
-
     setDefaultObject: function () {
       // let box
       if (canvas !== undefined) {

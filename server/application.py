@@ -29,6 +29,13 @@ def image(project, filename):
     print('img_dir,project,filename:',img_dir,project,filename)
     return send_from_directory(img_dir, filename)
 
+@app.route('/project/dataset/list/<dsname>')
+def dataset_list(dsname):
+    img_dir = cfg.MEDIA_PATH
+    
+    return jsonify({})
+
+
 
 if __name__ == '__main__':
     application.run(host='localhost')
