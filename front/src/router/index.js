@@ -1,5 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Editor from '@/components/annotator/Editor'
+// import Viewer from '@/components/dataest/Viewer'
+// import Regist from '@/components/user/Regist'
+// import Home from '@/components/Home'
+// import Contact from '@/components/Contact'
+// import ContactCH from '@/components/ContactCH'
+// import ContactEN from '@/components/ContactEN'
+
 Vue.use(Router)
 
 export default new Router({
