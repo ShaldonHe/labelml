@@ -30,6 +30,12 @@ def image(projectID,dsID, imgID):
     print('img_dir,project,filename:',projectID,dsID,imgID)
     return send_from_directory(img_dir, imgID+'.bmp')
 
+@app.route('/annotation/<projectID>/<dsID>/<imgID>')
+def annotation(projectID, dsID, imgID):
+    img_dir = cfg.MEDIA_PATH
+    print('img_dir,project,filename:',projectID,dsID,imgID)
+    return jsonify({})
+
 @app.route('/project/info/<projectID>')
 def project(projectID):
     print('ProjectID: ',projectID)
