@@ -2,17 +2,6 @@
   <v-app id='example-1' dark>
     <v-navigation-drawer v-model='drawer' dark expand-on-hover right clipped rounded app >
       <v-list dense>
-        <!-- <v-list-item>
-          <v-list-item-avatar>
-            <img src='https://randomuser.me/api/portraits/men/99.jpg' />
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>应用</v-list-item-title>
-            <v-list-item-subtitle>子标题</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider></v-divider> -->
         <v-list-item v-for='item in items' :key='item.title' link>
           <v-list-item-icon>
             <v-icon large>{{ item.icon }}</v-icon>
@@ -24,14 +13,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar dense class='darken-2' dark clipped-right="true" clipped-left="true" app>
+    <v-app-bar dense class='darken-2' dark clipped-right clipped-left app>
       <v-btn icon to='/'>
         <v-icon>arrow_back</v-icon>
       </v-btn>
       <v-toolbar-title>{{projectinfo.name}}</v-toolbar-title>
       <v-spacer/>
       <v-btn icon large>
-        <v-avatar size="32px" item>
+        <v-avatar size="42px" item>
           <v-img src="static/user-preview.png" alt="user" />
         </v-avatar>
       </v-btn>
@@ -42,41 +31,91 @@
       <v-container>
         <v-toolbar dark dense floating rounded color='rgba(0,0,0,1)' container>
           <v-spacer></v-spacer>
-          <v-btn icon @click='setSelectMode()'>
-            <v-icon large>open_with</v-icon>
-          </v-btn>
-          <v-btn icon @click='setDrawMode()'>
-            <v-icon large>crop_free</v-icon>
-          </v-btn>
-          <v-btn icon @click='setExtremeClickMode()'>
-            <v-icon large>filter_center_focus</v-icon>
-          </v-btn>
-          <v-btn icon @click='setPolygonMode()'>
-            <v-icon large>mode_edit</v-icon>
-          </v-btn>
-          <v-btn icon @click='toggleUnselectedVisibility()'>
-            <v-icon large>layers</v-icon>
-          </v-btn>
-          <v-btn icon @click='setZoomMode()'>
-            <v-icon large>zoom_in</v-icon>
-          </v-btn>
-          <v-btn icon @click='resetZoom()'>
-            <v-icon large>zoom_out</v-icon>
-          </v-btn>
-          <v-btn icon @click='deleteObject()'>
-            <v-icon large>delete</v-icon>
-          </v-btn>
-          <v-btn icon to='/'>
-            <v-icon large>help_outline</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon large>keyboard</v-icon>
-          </v-btn>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setSelectMode()' v-on="on">
+                <v-icon large>open_with</v-icon>
+              </v-btn>
+            </template>
+            <span>选择模式</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setDrawMode()'  v-on="on">
+                <v-icon large>crop_free</v-icon>
+              </v-btn>
+            </template>
+            <span>矩形标注</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setExtremeClickMode()' v-on="on">
+                <v-icon large>filter_center_focus</v-icon>
+              </v-btn>
+            </template>
+            <span>快捷矩形</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setPolygonMode()'  v-on="on">
+                <v-icon large>mode_edit</v-icon>
+              </v-btn>
+            </template>
+            <span>多边形标注</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='toggleUnselectedVisibility()'  v-on="on">
+                <v-icon large>layers</v-icon>
+              </v-btn>
+            </template>
+            <span>隐藏模式</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='setZoomMode()'  v-on="on">
+                <v-icon large>zoom_in</v-icon>
+              </v-btn>
+            </template>
+            <span>放大</span>
+          </v-tooltip>
+           <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='resetZoom()' v-on="on">
+                <v-icon large>zoom_out</v-icon>
+              </v-btn>
+            </template>
+            <span>重设大小</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click='deleteObject()'  v-on="on">
+                <v-icon large>delete</v-icon>
+              </v-btn>
+            </template>
+            <span>删除</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon to='/'  v-on="on">
+                <v-icon large>help_outline</v-icon>
+              </v-btn>
+            </template>
+            <span>帮助</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon  v-on="on">
+                <v-icon large>keyboard</v-icon>
+              </v-btn>
+            </template>
+            <span>快捷键</span>
+          </v-tooltip>
           <v-spacer></v-spacer>
           <v-select
             id='select-label'
             prepend-icon='label'
-            v-bind:items='labels'
+            v-bind:items='this.projectinfo.labels'
             v-model='selectedLabel'
             label='选择标签'
             return-object
@@ -300,7 +339,8 @@ export default {
       },
       dataset: {
         images: null,
-        index: 0
+        index: 0,
+        id: null
       },
       footer: {
         year: 2020,
@@ -381,6 +421,7 @@ export default {
 
   methods: {
     initProject: function () {
+      console.log('initProject')
       let request = new XMLHttpRequest()
       request.open('GET', this.server.url + '/project/info/skin')
       // 返回labels, dataset id, project name, project id
@@ -390,11 +431,8 @@ export default {
       request.onload = function () {
         var dsText = request.response
         console.log(dsText)
-        self.dataset.images = JSON.parse(dsText)
-        self.dataset.index = 0
-        self.dataset.id = 'skin'
-        self.initializeCanvas()
-        self.loadAnnotations()
+        self.projectinfo = JSON.parse(dsText)
+        self.dataset.id = self.projectinfo.dataset
       }
     },
     initDataset: function () {
@@ -1213,11 +1251,15 @@ export default {
     },
 
     nextImage: function () {
-      this.$apollo.queries.nextObjDetectImage.refetch()
+      console.log('next Image')
+      this.dataset.index = (this.dataset.index + 1) % this.dataset.images.length
+      this.initializeCanvas()
     },
 
     prevImage: function () {
-      this.$apollo.queries.nextObjDetectImage.refetch()
+      console.log('prev Image')
+      this.dataset.index = (this.dataset.index - 1 + this.dataset.images.length) % this.dataset.images.length
+      this.initializeCanvas()
     },
 
     save: function () {
