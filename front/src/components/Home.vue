@@ -5,7 +5,7 @@
     </v-toolbar>
     <main>
       <section>
-        <v-parallax src="/static/skin-1.jpg" weight="600" >
+        <v-parallax src="/static/skin-1.png" weight="600" >
           <v-layout
             column
             align-center
@@ -98,7 +98,7 @@
         </v-layout>
       </section>
       <section>
-        <v-parallax src="/static/skin.jpg" height="380" >
+        <v-parallax src="/static/skin.png" height="380" >
           <v-layout column align-center justify-center>
             <div class="headline blue--text mb-3">高效,便捷,准确的标注皮肤病理切片</div>
             <em class="blue--text mb-8">贝叶科技-BeYes</em>
