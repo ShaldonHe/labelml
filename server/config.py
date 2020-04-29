@@ -12,6 +12,7 @@ print('Current Work Dir:',cw_dir)
 BASE_PATH = '{}'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
 PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 MEDIA_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'images')
+THUMB_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'thumbnail')
 print(MEDIA_PATH)
 
 DEFAULT_LABELS = (

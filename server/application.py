@@ -1,11 +1,11 @@
 import os
 from flask import Flask
 from flask_cors import CORS
-# from flask_graphql import GraphQLView
-# from schema import Schema
-from flask import Response, request, abort,jsonify, send_from_directory
+from flask import Response, request, abort,jsonify, send_from_directory, send_file
 from io import StringIO
 import libs.common.files as libfi
+import libs.image.io as libio
+import libs.image.ops as libimgops
 
 import config as cfg
 import data
@@ -14,10 +14,6 @@ import data
 def create_app(**kwargs):
     app = Flask(__name__)
     CORS(app, supports_credentials=True, resources={r'/*': {'origins': '*'}})
-    # app.add_url_rule(
-    #     '/graphql',
-    #     view_func=GraphQLView.as_view('graphql', schema=Schema, **kwargs)
-    # )
     return app
 
 application = create_app(graphiql=True)
@@ -35,6 +31,26 @@ def annotation(projectID, dsID, imgID):
     img_dir = cfg.MEDIA_PATH
     print('img_dir,project,filename:',projectID,dsID,imgID)
     return jsonify({})
+
+@app.route('/thumbnail/<projectID>/<dsID>/<imgID>')
+def thumbnail(projectID, dsID, imgID):
+    img_dir = cfg.THUMB_PATH
+    print('thumbnail: img_dir,project,filename:',projectID,dsID,imgID)
+    tar_file = img_dir +'/' + imgID+'.jpg'
+    def gen_thumbnail(src_file,tar_file,max_length=256):
+        img = libio.imread(src_file)
+        ratio = max_length/max(img.shape)
+        img = libimgops.ratio_resize(img,ratio=ratio)
+        libio.imwrite(tar_file,img)
+
+        
+    if not libfi.exist(tar_file):
+        src_file = cfg.MEDIA_PATH + '/' + imgID+'.bmp'
+        if not libfi.exist(src_file):
+            abort(404)
+        else:
+            gen_thumbnail(src_file,tar_file)
+    return send_file(tar_file)
 
 @app.route('/project/info/<projectID>')
 def project(projectID):
