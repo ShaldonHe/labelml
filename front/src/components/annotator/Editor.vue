@@ -429,9 +429,8 @@ export default {
       request.send()
       let self = this
       request.onload = function () {
-        var dsText = request.response
-        console.log(dsText)
-        self.projectinfo = JSON.parse(dsText)
+        var projectText = request.response
+        self.projectinfo = JSON.parse(projectText)
         self.dataset.id = self.projectinfo.dataset
       }
     },
@@ -443,10 +442,8 @@ export default {
       let self = this
       request.onload = function () {
         var dsText = request.response
-        console.log(dsText)
         self.dataset.images = JSON.parse(dsText)
         self.dataset.index = 0
-        self.dataset.id = 'skin'
         self.initializeCanvas()
         self.loadAnnotations()
       }
