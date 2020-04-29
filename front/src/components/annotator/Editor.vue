@@ -26,6 +26,42 @@
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model='drawer' dark expand-on-hover left clipped rounded app>
+      <v-row v-if="dataset.images">
+        <v-col>
+          <v-card >
+            <v-container fluid>
+              <v-row>
+                <v-col
+                  v-for="img in dataset.images"
+                  :key="img.id"
+                  class="d-flex child-flex"
+                  cols="dataset.images.length"
+                >
+                  <v-card flat tile class="mx-auto" dark>
+                    <v-img
+                      :src="`http://localhost:5000/thumbnail/skin/skin/${img.id}`"
+                      :lazy-src="`http://localhost:5000/img/skin/skin/${img.id}`"
+                      aspect-ratio="1"
+                      class="grey lighten-2"
+                    >
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                      </template>
+                     <v-card-text class="headline">{{img.filename}}</v-card-text>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-navigation-drawer>
     <main  style="background-color:black; margin-top:48px;">
       <v-container>
