@@ -1,15 +1,22 @@
 package main
- 
+
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
- 
- 
+
+func root(c *gin.Context) {
+	c.String(http.StatusOK, "Hello World!")
+}
+
+func login(c *gin.Context) {
+	c.String(http.StatusOK, "sessiion:'adasdasdasd'")
+}
+
 func main() {
-    router := gin.Default()
-    router.GET("/", func(c *gin.Context) {
-        c.String(http.StatusOK, "Hello World!")
-    })
-    router.Run(":8000")
+	router := gin.Default()
+	router.GET("/", root)
+	router.GET("/login", login)
+	router.Run(":8000")
 }
