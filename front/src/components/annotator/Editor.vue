@@ -1,18 +1,5 @@
 <template>
   <v-app id='example-1' dark>
-    <v-navigation-drawer v-model='drawer' dark expand-on-hover right clipped rounded app >
-      <v-list dense>
-        <v-list-item v-for='item in items' :key='item.title' link>
-          <v-list-item-icon>
-            <v-icon large>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-app-bar dense class='darken-2' dark clipped-right clipped-left app>
       <v-btn icon to='/'>
         <v-icon>arrow_back</v-icon>
@@ -287,23 +274,23 @@ var LabeledRect = fabric.util.createClass(fabric.Rect, {
     options || (options = {})
     this.callSuper('initialize', options)
     this.set('label', options.label || '')
-    this.set('score', options.score || 1.0)
+    // this.set('score', options.score || 1.0)
   },
 
   toObject: function () {
     return fabric.util.object.extend(this.callSuper('toObject'), {
       label: this.get('label'),
-      score: this.get('score')
+      // score: this.get('score')
     })
   },
 
   _render: function (ctx) {
-    this.callSuper('_render', ctx)
-    let score = Math.round(this.score * 100) / 100
-    let text = this.label + ' (' + score + ')'
-    ctx.font = '14px Helvetica'
-    ctx.fillStyle = '#ffffff'
-    ctx.fillText(text, -this.width / 2, -this.height / 2 + 8)
+    // this.callSuper('_render', ctx)
+    // let score = Math.round(this.score * 100) / 100
+    // let text = this.label + ' (' + score + ')'
+    // ctx.font = '14px Helvetica'
+    // ctx.fillStyle = '#ffffff'
+    // ctx.fillText(text, -this.width / 2, -this.height / 2 + 8)
   }
 })
 
@@ -346,18 +333,6 @@ export default {
       shortcutSheet: false,
       shortcuts: keys.KEYS,
       shortcutHeaders: ['key', 'description'],
-      tiles: [
-        { img: 'keep.png', title: 'Keep' },
-        { img: 'inbox.png', title: 'Inbox' },
-        { img: 'hangouts.png', title: 'Hangouts' },
-        { img: 'messenger.png', title: 'Messenger' },
-        { img: 'google.png', title: 'Google+' }
-      ],
-      items: [
-        { title: '面板', icon: 'open_with' },
-        { title: '照片', icon: 'open_with' },
-        { title: '关于', icon: 'open_with' }
-      ],
       server: {
         url: 'http://localhost:5000'
       },
@@ -716,7 +691,7 @@ export default {
       console.log('saving rectangle', this.selectedLabel)
       console.log(drawRect)
       drawRect.set({
-        score: 1.0
+        // score: 1.0
       })
       drawRect.setCoords()
       drawRect.selectable = false
@@ -737,7 +712,7 @@ export default {
         left: this.getXCoordFromClick(pointer, this.extremeClickRadius),
         top: this.getYCoordFromClick(pointer, this.extremeClickRadius),
         visible: true,
-        score: 1.0,
+        // score: 1.0,
         labelType: EC_LABEL
       })
       canvas.add(circle)
@@ -832,7 +807,7 @@ export default {
         cornerColor: 'white',
         cornerSize: 3,
         labelType: POLYGON_LABEL,
-        score: 1.0,
+        // score: 1.0,
         points: this.makePointsFromCoords(coords)
       })
       return polygon
@@ -946,7 +921,7 @@ export default {
         selectable: false,
         hasControls: false,
         labelType: POLY_LINE_LABEL,
-        score: 1.0,
+        // score: 1.0,
         hoverCursor: 'default'
       })
     },
@@ -1082,7 +1057,7 @@ export default {
         visible: true,
         transparentCorners: true,
         cornerSize: this.cornerSize,
-        score: 1.0,
+        // score: 1.0,
         labelType: BOX_LABEL
       })
       rect.selectable = false
@@ -1137,8 +1112,8 @@ export default {
         selectable: false,
         label: bbox.label,
         opacity: 0.3,
-        visible: bbox.score >= this.sliderValue / 100,
-        score: bbox.score,
+        // visible: bbox.score >= this.sliderValue / 100,
+        // score: bbox.score,
         transparentCorners: true,
         cornerSize: this.cornerSize,
         labelType: BOX_LABEL,
@@ -1198,7 +1173,7 @@ export default {
       bb.id = rect.get('id')
       bb.annoId = rect.get('annoId')
       bb.label = rect.get('label')
-      bb.score = rect.get('score')
+      // bb.score = rect.get('score')
       bb.xmin = Math.min(Math.max(coords['tl']['x'], 0), this.width)
       bb.ymin = Math.min(Math.max(coords['tl']['y'], 0), this.height)
       bb.xmax = Math.min(Math.max(coords['tr']['x'], 0), this.width)
@@ -1213,7 +1188,7 @@ export default {
       poly.id = obj.get('id')
       poly.annoId = obj.get('annoId')
       poly.label = obj.get('label')
-      poly.score = obj.get('score')
+      // poly.score = obj.get('score')
       poly.points = obj.get('points')
       return poly
     },
@@ -1268,16 +1243,17 @@ export default {
           let height = bb.ymax - bb.ymin
           if (
             width !== 0 &&
-            height !== 0 &&
-            bb.score >= this.sliderValue / 100
+            height !== 0 
+            // &&
+            // bb.score >= this.sliderValue / 100
           ) {
             anno['bbox'] = bb
           }
         } else if (o.labelType === POLYGON_LABEL) {
           let poly = this.extractPolygon(o)
-          if (poly.points.length > 2 && poly.score >= this.sliderValue / 100) {
-            anno['polygon'] = poly
-          }
+          // if (poly.points.length > 2 && poly.score >= this.sliderValue / 100) {
+          anno['polygon'] = poly
+          // }
         }
       }
       return anno
@@ -1312,9 +1288,9 @@ export default {
       //   })
     },
 
-    getBoxScore: function (id) {
-      // let box = null
-    },
+    // getBoxScore: function (id) {
+    //   // let box = null
+    // },
 
     adjustThreshold: function () {
       let self = this
@@ -1324,11 +1300,11 @@ export default {
       if (canvas !== undefined) {
         canvas.forEachObject(function (o) {
           if (self.isLabelObject(o)) {
-            if (o.score >= val) {
-              o.visible = true
-            } else {
-              o.visible = false
-            }
+            // if (o.score >= val) {
+            o.visible = true
+            // } else {
+            //   o.visible = false
+            // }
             // o.visible = (o.score >= val)
           }
         })
@@ -1349,7 +1325,7 @@ export default {
       canvas.discardActiveObject()
       let boxes = []
       canvas.forEachObject(function (o) {
-        if (self.isLabelObject(o) && o.score >= self.sliderValue / 100) {
+        if (self.isLabelObject(o)) {
           boxes.push(o)
         }
       })
@@ -1392,11 +1368,11 @@ export default {
         this.sortBoxesByProp(boxes, 'left')
         for (let i in boxes) {
           if (this.isLabelObject(boxes[i])) {
-            if (boxes[i].score >= this.sliderValue / 100) {
-              canvas.setActiveObject(boxes[i])
-              canvas.renderAll()
-              return boxes[i]
-            }
+            // if (boxes[i].score >= this.sliderValue / 100) {
+            //   canvas.setActiveObject(boxes[i])
+            //   canvas.renderAll()
+            //   return boxes[i]
+            // }
           }
         }
       }
@@ -1410,7 +1386,7 @@ export default {
 
     getBoxById: function (boxes, id) {
       for (let box of boxes) {
-        console.log(box.id, box.score, box.xmin)
+        // console.log(box.id, box.score, box.xmin)
         if (box.id === id) {
           return box
         }
@@ -1651,16 +1627,16 @@ export default {
       if (!this.exists(curBox)) {
         curBox = this.setDefaultObject()
       }
-      let allBoxes = canvas.getObjects()
-      for (let box of allBoxes) {
-        if (box.id !== curBox.id) {
-          if (box.score < this.sliderValue / 100) {
-            box.visible = false
-          } else {
-            box.visible = !this.hideUnselected
-          }
-        }
-      }
+      // let allBoxes = canvas.getObjects()
+      // for (let box of allBoxes) {
+      //   if (box.id !== curBox.id) {
+      //     if (box.score < this.sliderValue / 100) {
+      //       box.visible = false
+      //     } else {
+      //       box.visible = !this.hideUnselected
+      //     }
+      //   }
+      // }
       canvas.renderAll()
     }
   }
