@@ -279,7 +279,7 @@ var LabeledRect = fabric.util.createClass(fabric.Rect, {
 
   toObject: function () {
     return fabric.util.object.extend(this.callSuper('toObject'), {
-      label: this.get('label'),
+      label: this.get('label')
       // score: this.get('score')
     })
   },
@@ -370,8 +370,14 @@ export default {
     },
     image: function () {
       var result = null
-      if (this.dataset.images === null) result = { src: 'http://localhost:5000/img/skin/skin/8960A' }
-      else result = { src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id }
+      if (this.dataset.images === null) result = { 
+        src: 'http://localhost:5000/img/skin/skin/8960A',
+        annotation: 'http://localhost:5000/annotation/skin/skin/8960A'
+        }
+      else result = { 
+        src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
+        annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id
+        }
       return result
     }
   },
@@ -602,14 +608,14 @@ export default {
     },
 
     mouseWheelHandler: function (e) {
-      console.log('Mouse wheel', e.e.target)
+      // console.log('Mouse wheel', e.e.target)
       if (this.zoomMode) {
         this.zoomToPoint(e)
       }
     },
 
     mouseDblClickHandler: function (e) {
-      console.log('Mouse dblclick', e.e.target)
+      // console.log('Mouse dblclick', e.e.target)
       if (this.extremeClickMode && e.target !== null) {
         this.resetExtremeClicks()
         this.setSelectMode()
@@ -1127,7 +1133,11 @@ export default {
     },
 
     loadAnnotations: function () {
-      let annos = this.image.annotations
+      console.log(this.dataset.images)
+      // this.image.annotation_src 
+
+      let annos = this.dataset.images[this.dataset.index].annotations
+      // let annos = this.dataset.images.annotations
       for (let anno of annos) {
         if (this.exists(anno.bbox)) {
           this.loadBB(anno.bbox)
@@ -1241,12 +1251,7 @@ export default {
           let bb = this.extractBB(o)
           let width = bb.xmax - bb.xmin
           let height = bb.ymax - bb.ymin
-          if (
-            width !== 0 &&
-            height !== 0 
-            // &&
-            // bb.score >= this.sliderValue / 100
-          ) {
+          if (width !== 0 && height !== 0) {
             anno['bbox'] = bb
           }
         } else if (o.labelType === POLYGON_LABEL) {
