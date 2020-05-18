@@ -190,10 +190,6 @@ import { fabric } from 'fabric'
 
 import keys from '@/constants/keyboard.js'
 
-// import 'vue-range-slider/dist/vue-range-slider.css'
-// import { SAVE_OBJ_DETECT_IMAGE, NEXT_OBJ_DETECT_IMG_QUERY } from '@/constants/graphql'
-// import { OBJ_DETECT_IMG_QUERY, OBJ_DETECT_LABEL_OPT_QUERY, SAVE_OBJ_DETECT_IMAGE, NEXT_OBJ_DETECT_IMG_QUERY } from '../constants/graphql'
-
 const BOX_LABEL = 'box'
 const EC_LABEL = 'extremeClick'
 const POLY_CLICK_LABEL = 'polygonClick'
@@ -369,16 +365,7 @@ export default {
       return false
     },
     image: function () {
-      var result = null
-      if (this.dataset.images === null) result = { 
-        src: 'http://localhost:5000/img/skin/skin/8960A',
-        annotation: 'http://localhost:5000/annotation/skin/skin/8960A'
-        }
-      else result = { 
-        src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
-        annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id
-        }
-      return result
+      return this.dataset.images === null ? { src: 'http://localhost:5000/img/skin/skin/8960A', annotation: 'http://localhost:5000/annotation/skin/skin/8960A' } : { src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id, annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id }
     }
   },
   filters: {
@@ -1118,8 +1105,6 @@ export default {
         selectable: false,
         label: bbox.label,
         opacity: 0.3,
-        // visible: bbox.score >= this.sliderValue / 100,
-        // score: bbox.score,
         transparentCorners: true,
         cornerSize: this.cornerSize,
         labelType: BOX_LABEL,
@@ -1134,9 +1119,21 @@ export default {
 
     loadAnnotations: function () {
       console.log(this.dataset.images)
-      // this.image.annotation_src 
-
+      // this.image.annotation_src
       let annos = this.dataset.images[this.dataset.index].annotations
+      if (annos === null) {
+        let request = new XMLHttpRequest()
+        request.open('GET', this.image.annotation)
+        request.responseType = 'text'
+        request.send()
+        let self = this
+        request.onload = function () {
+          var text = request.response
+          self.dataset.images[self.dataset.index].annotations = JSON.parse(text)
+          self.loadAnnotations()
+        }
+      }
+      console.log(annos)
       // let annos = this.dataset.images.annotations
       for (let anno of annos) {
         if (this.exists(anno.bbox)) {
