@@ -1,7 +1,6 @@
 {
   "shapes": [
     {
-      "line_color": null, 
       "points": [
         [
           212, 
@@ -272,11 +271,9 @@
           545
         ]
       ], 
-      "fill_color": null, 
       "label": "角化过度"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           504, 
@@ -491,11 +488,9 @@
           729
         ]
       ], 
-      "fill_color": null, 
       "label": "棘层增厚"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           181, 
@@ -562,11 +557,10 @@
           291
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           276, 
@@ -645,11 +639,9 @@
           399
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           156, 
@@ -684,11 +676,9 @@
           384
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           129, 
@@ -723,11 +713,9 @@
           325
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           628, 
@@ -770,11 +758,9 @@
           719
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           694, 
@@ -821,11 +807,9 @@
           790
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           529, 
@@ -880,11 +864,9 @@
           678
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           343, 
@@ -975,11 +957,9 @@
           260
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           417, 
@@ -1042,11 +1022,9 @@
           317
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           408, 
@@ -1089,11 +1067,9 @@
           619.077922077922
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           781, 
@@ -1156,11 +1132,9 @@
           345
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮中层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           503, 
@@ -1195,11 +1169,9 @@
           539
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           141, 
@@ -1226,11 +1198,9 @@
           147
         ]
       ], 
-      "fill_color": null, 
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
       "points": [
         [
           703, 
@@ -1301,11 +1271,11 @@
           706
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
+      
       "points": [
         [
           294, 
@@ -1356,11 +1326,11 @@
           541.1558441558442
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "真皮浅层血管周围炎症细胞浸润"
     }, 
     {
-      "line_color": null, 
+      
       "points": [
         [
           225.7012987012987, 
@@ -1847,11 +1817,11 @@
           11.285714285714285
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "真皮乳头层"
     }, 
     {
-      "line_color": null, 
+      
       "points": [
         [
           36.09090909090909, 
@@ -1902,11 +1872,11 @@
           295.7012987012987
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "角化过度"
     }, 
     {
-      "line_color": null, 
+      
       "points": [
         [
           112.71428571428572, 
@@ -2129,11 +2099,11 @@
           464.53246753246754
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "棘层增厚"
     }, 
     {
-      "line_color": null, 
+      
       "points": [
         [
           652.974025974026, 
@@ -2172,22 +2142,9 @@
           442.45454545454544
         ]
       ], 
-      "fill_color": null, 
+      
       "label": "真皮浅层血管周围炎症细胞浸润"
     }
-  ], 
-  "lineColor": [
-    0, 
-    255, 
-    0, 
-    128
-  ], 
-  "imagePath": "9373B.bmp", 
-  "flags": {}, 
-  "fillColor": [
-    255, 
-    0, 
-    0, 
-    128
-  ]
+  ],
+  "flags": {}
 }

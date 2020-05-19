@@ -574,7 +574,7 @@ export default {
       } else if (this.polygonMode) {
         this.handlePolygonClick(e)
       } else if (this.drawMode) {
-        console.log('draw mode mouse up')
+        // console.log('draw mode mouse up')
         this.saveRectangle(e)
       } else {
         return
@@ -584,7 +584,7 @@ export default {
 
     mouseMoveHandler: function (e) {
       if (this.grabMode) {
-        console.log('handling grab move')
+        // console.log('handling grab move')
         this.handleGrabMove(e)
       } else if (this.drawMode) {
         this.handleDrawMove(e)
@@ -1121,7 +1121,8 @@ export default {
       console.log(this.dataset.images)
       // this.image.annotation_src
       let annos = this.dataset.images[this.dataset.index].annotations
-      if (annos === null) {
+      console.log(annos)
+      if (annos === undefined) {
         let request = new XMLHttpRequest()
         request.open('GET', this.image.annotation)
         request.responseType = 'text'
@@ -1132,18 +1133,17 @@ export default {
           self.dataset.images[self.dataset.index].annotations = JSON.parse(text)
           self.loadAnnotations()
         }
-      }
-      console.log(annos)
-      // let annos = this.dataset.images.annotations
-      for (let anno of annos) {
-        if (this.exists(anno.bbox)) {
-          this.loadBB(anno.bbox)
+      } else {
+        for (let anno of annos) {
+          if (this.exists(anno.bbox)) {
+            this.loadBB(anno.bbox)
+          }
+          if (this.exists(anno.polygon)) {
+            this.loadPolygon(anno.polygon)
+          }
         }
-        if (this.exists(anno.polygon)) {
-          this.loadPolygon(anno.polygon)
-        }
+        canvas.renderAll()
       }
-      canvas.renderAll()
     },
 
     getColor: function () {

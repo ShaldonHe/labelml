@@ -28,9 +28,15 @@ def image(projectID,dsID, imgID):
 
 @app.route('/annotation/<projectID>/<dsID>/<imgID>')
 def annotation(projectID, dsID, imgID):
-    img_dir = cfg.MEDIA_PATH
+    ds_dir = cfg.DATASET_PATH
+    print(ds_dir)
     print('img_dir,project,filename:',projectID,dsID,imgID)
-    return jsonify({})
+    f_path = f'{ds_dir}/{projectID}/labels/{imgID}.json'
+    if libfi.exist(f_path):
+        return send_file(f_path)
+    else:
+        return jsonify({})
+
 
 @app.route('/thumbnail/<projectID>/<dsID>/<imgID>')
 def thumbnail(projectID, dsID, imgID):
