@@ -1915,19 +1915,6 @@
       "fill_color": null, 
       "label": "真皮乳头层"
     }
-  ], 
-  "lineColor": [
-    0, 
-    255, 
-    0, 
-    128
-  ], 
-  "imagePath": "8960B.bmp", 
-  "flags": {}, 
-  "fillColor": [
-    255, 
-    0, 
-    0, 
-    128
-  ]
+  ],
+  "flags": {}
 }
