@@ -1089,7 +1089,7 @@ export default {
     },
 
     loadBB: function (bbox) {
-      console.log('slider', this.sliderValue / 100)
+      // console.log('slider', this.sliderValue / 100)
       let rect = new LabeledRect({
         id: bbox.id,
         annoId: bbox.annoId,
@@ -1118,7 +1118,7 @@ export default {
         id: poly.id,
         annoId: poly.annoId,
         label: poly.label,
-        fill: this.getColor(),
+        fill: this.projectinfo.colors[poly.label],
         selectable: false,
         objectCaching: false,
         opacity: 0.3,
@@ -1167,13 +1167,18 @@ export default {
     getColor: function () {
       let label = this.getCurLabel()
       console.log('GETTING LABEL COLOR', label)
+      console.log('GETTING LABEL COLOR', this.projectinfo.colors[label])
+      return this.projectinfo.colors[label]
+    },
+    getLabelColor: function (label) {
+      console.log('GETTING LABEL COLOR', label)
       console.log('GETTING LABEL COLOR', this.colors[label])
       return this.colors[label]
     },
 
     getCurLabel: function () {
       console.log('SELECTED', this.selectedLabel)
-      return this.selectedLabel.value
+      return this.selectedLabel
     },
 
     getRandId: function () {
@@ -1283,12 +1288,14 @@ export default {
       console.log('next Image')
       this.dataset.index = (this.dataset.index + 1) % this.dataset.images.length
       this.initializeCanvas()
+      this.loadAnnotations()
     },
 
     prevImage: function () {
       console.log('prev Image')
       this.dataset.index = (this.dataset.index - 1 + this.dataset.images.length) % this.dataset.images.length
       this.initializeCanvas()
+      this.loadAnnotations()
     },
 
     save: function () {
@@ -1640,23 +1647,17 @@ export default {
     },
 
     toggleUnselectedVisibility: function (updateToggle) {
-      if (updateToggle !== undefined && updateToggle) {
-        this.hideUnselected = !this.hideUnselected
-      }
+      // if (updateToggle !== undefined && updateToggle) {
+      this.hideUnselected = !this.hideUnselected
+      // }
       let curBox = canvas.getActiveObject()
       if (!this.exists(curBox)) {
         curBox = this.setDefaultObject()
       }
-      // let allBoxes = canvas.getObjects()
-      // for (let box of allBoxes) {
-      //   if (box.id !== curBox.id) {
-      //     if (box.score < this.sliderValue / 100) {
-      //       box.visible = false
-      //     } else {
-      //       box.visible = !this.hideUnselected
-      //     }
-      //   }
-      // }
+      let allBoxes = canvas.getObjects()
+      for (let box of allBoxes) {
+        box.visible = !this.hideUnselected
+      }
       canvas.renderAll()
     }
   }
