@@ -4,8 +4,8 @@ from flask_cors import CORS
 from flask import Response, request, abort,jsonify, send_from_directory, send_file
 from io import StringIO
 import libs.common.files as libfi
-import libs.image.io as libio
-import libs.image.ops as libimgops
+import libs.image.io as im_io
+import libs.image.ops as im_ops
 
 import config as cfg
 import data
@@ -37,6 +37,17 @@ def annotation(projectID, dsID, imgID):
     else:
         return jsonify({})
 
+@app.route('/save/<projectID>/<dsID>/<imgID>')
+def save_annotation(projectID, dsID, imgID):
+    ds_dir = cfg.DATASET_PATH
+    print(ds_dir)
+    print('img_dir,project,filename:',projectID,dsID,imgID)
+    f_path = f'{ds_dir}/{projectID}/labels/{imgID}.a.json'
+    if libfi.exist(f_path):
+        return send_file(f_path)
+    else:
+        return jsonify({})
+
 
 @app.route('/thumbnail/<projectID>/<dsID>/<imgID>')
 def thumbnail(projectID, dsID, imgID):
@@ -44,10 +55,10 @@ def thumbnail(projectID, dsID, imgID):
     print('thumbnail: img_dir,project,filename:',projectID,dsID,imgID)
     tar_file = img_dir +'/' + imgID+'.jpg'
     def gen_thumbnail(src_file,tar_file,max_length=256):
-        img = libio.imread(src_file)
+        img = im_io.imread(src_file)
         ratio = max_length/max(img.shape)
-        img = libimgops.ratio_resize(img,ratio=ratio)
-        libio.imwrite(tar_file,img)
+        img = im_ops.ratio_resize(img,ratio=ratio)
+        im_io.imwrite(tar_file,img)
 
         
     if not libfi.exist(tar_file):
