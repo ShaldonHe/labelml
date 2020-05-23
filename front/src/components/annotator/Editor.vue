@@ -1114,7 +1114,25 @@ export default {
     },
 
     loadPolygon: function (poly) {
-      // return
+      let polygon = new fabric.Polygon(poly.points, {
+        id: poly.id,
+        annoId: poly.annoId,
+        label: poly.label,
+        fill: this.getColor(),
+        selectable: false,
+        objectCaching: false,
+        opacity: 0.3,
+        hasControls: false,
+        hasBorders: true,
+        borderColor: 'white',
+        cornerStyle: 'circle',
+        cornerColor: 'white',
+        cornerSize: 3,
+        labelType: POLYGON_LABEL,
+        score: 1.0,
+        points: this.makePointsFromCoords(poly.points)
+      })
+      canvas.add(polygon)
     },
 
     loadAnnotations: function () {
@@ -1130,7 +1148,7 @@ export default {
         let self = this
         request.onload = function () {
           var text = request.response
-          self.dataset.images[self.dataset.index].annotations = JSON.parse(text)
+          self.dataset.images[self.dataset.index].annotations = JSON.parse(text).annotations
           self.loadAnnotations()
         }
       } else {
