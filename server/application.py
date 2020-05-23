@@ -6,6 +6,7 @@ from io import StringIO
 import libs.common.files as libfi
 import libs.image.io as im_io
 import libs.image.ops as im_ops
+import json
 
 import config as cfg
 import data
@@ -19,6 +20,21 @@ def create_app(**kwargs):
 application = create_app(graphiql=True)
 app = application
 
+def save_json(filepath,j):
+    with open(filepath,'w',encoding='utf-8') as json_file:
+        data = json.loads(j)
+        data['flags'] = {}
+
+        json.dump(data, json_file)
+    
+
+def getParms(request):
+    if request.method=='POST':
+        return request.form
+    elif request.method=='GET':
+        return request.args
+    else:
+        return {}
 
 @app.route('/img/<projectID>/<dsID>/<imgID>')
 def image(projectID,dsID, imgID):
@@ -37,16 +53,17 @@ def annotation(projectID, dsID, imgID):
     else:
         return jsonify({})
 
-@app.route('/save/<projectID>/<dsID>/<imgID>')
+@app.route('/save/<projectID>/<dsID>/<imgID>',methods=['POST'])
 def save_annotation(projectID, dsID, imgID):
     ds_dir = cfg.DATASET_PATH
     print(ds_dir)
-    print('img_dir,project,filename:',projectID,dsID,imgID)
+    parms = getParms(request)
+    print(parms)
+    print('save img_dir,project,filename:',projectID,dsID,imgID)
     f_path = f'{ds_dir}/{projectID}/labels/{imgID}.a.json'
-    if libfi.exist(f_path):
-        return send_file(f_path)
-    else:
-        return jsonify({})
+    save_json(f_path,parms['annotations'])
+
+    return jsonify({})
 
 
 @app.route('/thumbnail/<projectID>/<dsID>/<imgID>')

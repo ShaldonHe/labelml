@@ -365,7 +365,18 @@ export default {
       return false
     },
     image: function () {
-      return this.dataset.images === null ? { src: 'http://localhost:5000/img/skin/skin/8960A', annotation: 'http://localhost:5000/annotation/skin/skin/8960A' } : { src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id, annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id }
+      if (this.dataset.image === null) {
+        return {
+          src: 'http://localhost:5000/img/skin/skin/8960A',
+          annotation: 'http://localhost:5000/annotation/skin/skin/8960A',
+          save_url: 'http://localhost:5000/save/skin/skin/8960A'}
+      } else {
+        return {
+          src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
+          annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
+          save_url: this.server.url + '/save/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id
+        }
+      }
     }
   },
   filters: {
@@ -1300,19 +1311,16 @@ export default {
 
     save: function () {
       let annos = this.extractAnnotations()
-      console.log('Saving annos', annos)
-      // this.$apollo
-      //   .mutate({
-      //     mutation: SAVE_OBJ_DETECT_IMAGE,
-      //     variables: {
-      //       id: this.image.id,
-      //       project: this.project,
-      //       annotations: annos
-      //     }
-      //   })
-      //   .then(data => {
-      //     this.$apollo.queries.nextObjDetectImage.refetch()
-      //   })
+      let jsdata = {
+        annotations: annos
+      }
+      console.log('Saving annos', JSON.stringify(jsdata))
+      let request = new XMLHttpRequest()
+      request.open('POST', this.image.save_url, true)
+      request.responseType = 'text'
+      var fd = new FormData()
+      fd.append('annotations', JSON.stringify(jsdata))
+      request.send(fd)
     },
 
     // getBoxScore: function (id) {
