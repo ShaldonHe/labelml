@@ -1536,32 +1536,32 @@ export default {
       if (zoomIn) {
         cursor = 'zoom-in'
         delta = 1.1
-        // this.scalePoints(.95)
+        this.scalePoints(0.95)
       } else {
         cursor = 'zoom-out'
         delta = 0.95
-        // this.scalePoints(1.1)
+        this.scalePoints(1.1)
       }
       this.zoomFactor *= delta
       console.log(cursor)
-      // canvas.defaultCursor = cursor
-      // canvas.hoverCursor = cursor
+      canvas.defaultCursor = cursor
+      canvas.hoverCursor = cursor
       canvas.zoomToPoint(
         new fabric.Point(e.e.offsetX, e.e.offsetY),
         this.zoomFactor
       )
-      // this.resetCursors()
-      // let obj = e.target
-      // if (obj !== undefined
-      //     && obj !== null
-      //     && this.polygonClicks.length > 0
-      //     && obj === this.polygonClicks[0]) {
-      //   obj.set({
-      //     stroke: 'green',
-      //     fill: 'green',
-      //   })
-      //   canvas.renderAll()
-      // }
+      this.resetCursors()
+      let obj = e.target
+      if (obj !== undefined &&
+      obj !== null &&
+      this.polygonClicks.length > 0 &&
+      obj === this.polygonClicks[0]) {
+        obj.set({
+          stroke: 'green',
+          fill: 'green'
+        })
+        canvas.renderAll()
+      }
     },
 
     setDrawMode: function () {
@@ -1595,6 +1595,7 @@ export default {
       canvas.forEachObject(function (o) {
         if (self.isLabelObject(o)) {
           console.log(o)
+          o.set({ edit: true }).setCoords()
           o.set({ selectable: true }).setCoords()
         }
       })
