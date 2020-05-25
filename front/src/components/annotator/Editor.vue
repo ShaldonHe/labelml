@@ -365,7 +365,18 @@ export default {
       return false
     },
     image: function () {
-      return this.dataset.images === null ? { src: 'http://localhost:5000/img/skin/skin/8960A', annotation: 'http://localhost:5000/annotation/skin/skin/8960A' } : { src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id, annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id }
+      if (this.dataset.image === null) {
+        return {
+          src: 'http://localhost:5000/img/skin/skin/8960A',
+          annotation: 'http://localhost:5000/annotation/skin/skin/8960A',
+          save_url: 'http://localhost:5000/save/skin/skin/8960A'}
+      } else {
+        return {
+          src: this.server.url + '/img/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
+          annotation: this.server.url + '/annotation/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id,
+          save_url: this.server.url + '/save/skin/' + this.dataset.id + '/' + this.dataset.images[this.dataset.index].id
+        }
+      }
     }
   },
   filters: {
@@ -1114,7 +1125,29 @@ export default {
     },
 
     loadPolygon: function (poly) {
+<<<<<<< HEAD
       return null
+=======
+      let polygon = new fabric.Polygon(poly.points, {
+        id: poly.id,
+        annoId: poly.annoId,
+        label: poly.label,
+        fill: this.projectinfo.colors[poly.label],
+        selectable: false,
+        objectCaching: false,
+        opacity: 0.3,
+        hasControls: false,
+        hasBorders: true,
+        borderColor: 'white',
+        cornerStyle: 'circle',
+        cornerColor: 'white',
+        cornerSize: 3,
+        labelType: POLYGON_LABEL,
+        score: 1.0,
+        points: this.makePointsFromCoords(poly.points)
+      })
+      canvas.add(polygon)
+>>>>>>> b26f637e2bc8ab52c4782e5d93d7da2626db43c7
     },
 
     loadAnnotations: function () {
@@ -1149,13 +1182,18 @@ export default {
     getColor: function () {
       let label = this.getCurLabel()
       console.log('GETTING LABEL COLOR', label)
+      console.log('GETTING LABEL COLOR', this.projectinfo.colors[label])
+      return this.projectinfo.colors[label]
+    },
+    getLabelColor: function (label) {
+      console.log('GETTING LABEL COLOR', label)
       console.log('GETTING LABEL COLOR', this.colors[label])
       return this.colors[label]
     },
 
     getCurLabel: function () {
       console.log('SELECTED', this.selectedLabel)
-      return this.selectedLabel.value
+      return this.selectedLabel
     },
 
     getRandId: function () {
@@ -1265,29 +1303,28 @@ export default {
       console.log('next Image')
       this.dataset.index = (this.dataset.index + 1) % this.dataset.images.length
       this.initializeCanvas()
+      this.loadAnnotations()
     },
 
     prevImage: function () {
       console.log('prev Image')
       this.dataset.index = (this.dataset.index - 1 + this.dataset.images.length) % this.dataset.images.length
       this.initializeCanvas()
+      this.loadAnnotations()
     },
 
     save: function () {
       let annos = this.extractAnnotations()
-      console.log('Saving annos', annos)
-      // this.$apollo
-      //   .mutate({
-      //     mutation: SAVE_OBJ_DETECT_IMAGE,
-      //     variables: {
-      //       id: this.image.id,
-      //       project: this.project,
-      //       annotations: annos
-      //     }
-      //   })
-      //   .then(data => {
-      //     this.$apollo.queries.nextObjDetectImage.refetch()
-      //   })
+      let jsdata = {
+        annotations: annos
+      }
+      console.log('Saving annos', JSON.stringify(jsdata))
+      let request = new XMLHttpRequest()
+      request.open('POST', this.image.save_url, true)
+      request.responseType = 'text'
+      var fd = new FormData()
+      fd.append('annotations', JSON.stringify(jsdata))
+      request.send(fd)
     },
 
     // getBoxScore: function (id) {
@@ -1622,23 +1659,17 @@ export default {
     },
 
     toggleUnselectedVisibility: function (updateToggle) {
-      if (updateToggle !== undefined && updateToggle) {
-        this.hideUnselected = !this.hideUnselected
-      }
+      // if (updateToggle !== undefined && updateToggle) {
+      this.hideUnselected = !this.hideUnselected
+      // }
       let curBox = canvas.getActiveObject()
       if (!this.exists(curBox)) {
         curBox = this.setDefaultObject()
       }
-      // let allBoxes = canvas.getObjects()
-      // for (let box of allBoxes) {
-      //   if (box.id !== curBox.id) {
-      //     if (box.score < this.sliderValue / 100) {
-      //       box.visible = false
-      //     } else {
-      //       box.visible = !this.hideUnselected
-      //     }
-      //   }
-      // }
+      let allBoxes = canvas.getObjects()
+      for (let box of allBoxes) {
+        box.visible = !this.hideUnselected
+      }
       canvas.renderAll()
     }
   }
