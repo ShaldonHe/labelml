@@ -31,7 +31,7 @@ def annotation(projectID, dsID, imgID):
     ds_dir = cfg.DATASET_PATH
     print(ds_dir)
     print('img_dir,project,filename:',projectID,dsID,imgID)
-    f_path = f'{ds_dir}/{projectID}/labels/{imgID}.v0.json'
+    f_path = f'{ds_dir}/{projectID}/labels/{imgID}.a.json'
     if libfi.exist(f_path):
         return send_file(f_path)
     else:

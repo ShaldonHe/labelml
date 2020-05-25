@@ -473,8 +473,8 @@ export default {
       img.onload = function () {
         self.configureCanvas(this.width, this.height)
         self.width = this.width
-        // self.height = this.height
-        self.height = 960
+        self.height = this.height
+        // self.height = 960
       }
       img.src = this.image.src // /img/skin/skin/8960A
     },
@@ -1089,7 +1089,7 @@ export default {
     },
 
     loadBB: function (bbox) {
-      console.log('slider', this.sliderValue / 100)
+      // console.log('slider', this.sliderValue / 100)
       let rect = new LabeledRect({
         id: bbox.id,
         annoId: bbox.annoId,
@@ -1114,7 +1114,7 @@ export default {
     },
 
     loadPolygon: function (poly) {
-      // return
+      return null
     },
 
     loadAnnotations: function () {
@@ -1130,7 +1130,7 @@ export default {
         let self = this
         request.onload = function () {
           var text = request.response
-          self.dataset.images[self.dataset.index].annotations = JSON.parse(text)
+          self.dataset.images[self.dataset.index].annotations = JSON.parse(text).annotations
           self.loadAnnotations()
         }
       } else {
