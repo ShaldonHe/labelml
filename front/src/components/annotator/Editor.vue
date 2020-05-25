@@ -1125,9 +1125,6 @@ export default {
     },
 
     loadPolygon: function (poly) {
-<<<<<<< HEAD
-      return null
-=======
       let polygon = new fabric.Polygon(poly.points, {
         id: poly.id,
         annoId: poly.annoId,
@@ -1147,7 +1144,6 @@ export default {
         points: this.makePointsFromCoords(poly.points)
       })
       canvas.add(polygon)
->>>>>>> b26f637e2bc8ab52c4782e5d93d7da2626db43c7
     },
 
     loadAnnotations: function () {
