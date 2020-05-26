@@ -484,8 +484,8 @@ export default {
       img.onload = function () {
         self.configureCanvas(this.width, this.height)
         self.width = this.width
-        // self.height = this.height
-        self.height = 960
+        self.height = this.height
+        // self.height = 960
       }
       img.src = this.image.src // /img/skin/skin/8960A
     },
