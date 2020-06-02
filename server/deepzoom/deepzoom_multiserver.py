@@ -211,4 +211,5 @@ if __name__ == '__main__':
     except IndexError:
         pass
 
+    app.config['SLIDE_DIR'] = '/media/xiaodonghe/data/data/Skin/肿瘤类-WSI/BaWei/BCC/TIF/'
     app.run(host=opts.host, port=opts.port, threaded=True)
