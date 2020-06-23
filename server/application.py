@@ -17,7 +17,7 @@ def create_app(**kwargs):
     CORS(app, supports_credentials=True, resources={r'/*': {'origins': '*'}})
     return app
 
-application = create_app(graphiql=True)
+application = create_app()
 app = application
 
 def save_json(filepath,j):
