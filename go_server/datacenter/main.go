@@ -22,11 +22,16 @@ func thumbnail(c *gin.Context) {
 	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
 }
 
+func upload(c *gin.Context) {
+	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/", root)
-	router.GET("/image", image)
-	router.GET("/wsi", wsi)
-	router.GET("/thumbnail", thumbnail)
+	router.GET("/data/image", image)
+	router.GET("/data/wsi", wsi)
+	router.GET("/data/thumbnail", thumbnail)
+	router.GET("/data/upload", upload)
 	router.Run(":8000")
 }
