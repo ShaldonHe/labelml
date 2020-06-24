@@ -28,8 +28,26 @@ import os
 from optparse import OptionParser
 from threading import Lock
 
+import os
+import threading
+import time
+import psutil
+def show_info():
+    p = psutil.Process(pid=os.getpid())
+    while(True):
+        print('-'*100)
+        print('当前进程: {}'.format(os.getpid()))
+        m_info = p.memory_full_info()
+        print('当前内存: {} MB'.format(m_info.uss / 1024. / 1024))
+        print('-'*100)
+        time.sleep(2)
+
+t = threading.Thread(target=show_info)
+t.start()
+
+
 SLIDE_DIR = '.'
-SLIDE_CACHE_SIZE = 10
+SLIDE_CACHE_SIZE = 2
 DEEPZOOM_FORMAT = 'jpeg'
 DEEPZOOM_TILE_SIZE = 254
 DEEPZOOM_OVERLAP = 1
