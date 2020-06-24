@@ -11,18 +11,23 @@ func root(c *gin.Context) {
 }
 
 func image(c *gin.Context) {
+	// 图像接口
 	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
 }
 
 func wsi(c *gin.Context) {
+	// WSI 影像接口
+	//
 	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
 }
 
 func thumbnail(c *gin.Context) {
+	// 缩略图接口
 	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
 }
 
 func upload(c *gin.Context) {
+	// 文件上传接口
 	c.File("/home/sheldon/Document/code/beyes/labelml/server/project/skin-feature/skin.jpg")
 }
 
