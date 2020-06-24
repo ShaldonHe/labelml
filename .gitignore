@@ -1,5 +1,6 @@
 __pycache__
 *~
+.vscode/
 /graphqlview.py
 /render_graphiql.py
 .DS_Store
