@@ -7,7 +7,7 @@ import (
 )
 
 func root(c *gin.Context) {
-	c.String(http.StatusOK, "DataCenter Interface!")
+	c.String(http.StatusOK, "Data Center Interface!")
 }
 
 func image(c *gin.Context) {
