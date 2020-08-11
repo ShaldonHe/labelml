@@ -1,3 +1,6 @@
 [submodule "server/libs"]
 	path = server/libs
 	url = https://github.com/ShaldonHe/CommonLibs.git
+[submodule "tmp_server/libs"]
+	path = tmp_server/libs
+	url = https://github.com/ShaldonHe/CommonLibs.git
