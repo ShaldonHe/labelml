@@ -16,10 +16,11 @@ DATASET_PATH = os.path.join(BASE_PATH,'dataset')
 IMAGE_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'images')
 THUMB_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'thumbnail')
 print(IMAGE_PATH)
-
-ENDPOINT = 'http://0.0.0.0:80'
-IMG_ENDPOINT = ENDPOINT + '/getimage'
-print("IMG", IMG_ENDPOINT)
+ENDIP = '0.0.0.0'
+ENDPORT = 5000
+# ENDPOINT = 'http://0.0.0.0:5000'
+# IMG_ENDPOINT = ENDPOINT + '/getimage'
+# print("IMG", IMG_ENDPOINT)
 projects = {
     'skin':
         {

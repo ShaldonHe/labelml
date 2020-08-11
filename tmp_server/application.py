@@ -9,23 +9,29 @@ import libs.image.ops as im_ops
 import json
 
 import app_config as cfg
-# import data
-
 
 def create_app(**kwargs):
     app = Flask(__name__)
     CORS(app, supports_credentials=True, resources={r'/*': {'origins': '*'}})
     return app
 
-application = create_app()
-app = application
+app = create_app()
+app.config['JSON_AS_ASCII'] = False
 
 def save_json(filepath,j):
     with open(filepath,'w',encoding='utf-8') as json_file:
-        data = json.loads(j)
-        data['flags'] = {}
+        shapes = json.loads(j)
+        data = {}
+        data['shapes'] = shapes
         json.dump(data, json_file)
-    
+
+def load_json(filepath):
+    with open(filepath,'r',encoding='utf-8') as json_file:
+        data = json.load(json_file)
+        if 'shapes' not in data:
+            return []
+        else:
+            return data['shapes']    
 
 def getParms(request):
     if request.method=='POST':
@@ -45,9 +51,16 @@ def annotation(imgID):
     print('Image ID:',imgID)
     f_path = f'{cfg.DATASET_PATH}/skin/labels/{imgID}.json'
     if libfi.exist(f_path):
-        return send_file(f_path)
+        return jsonify(load_json(f_path))
     else:
-        return jsonify({})
+        return jsonify([])
+
+
+@app.route('/addlabel/<labelname>')
+def addlabel(labelname):
+    print('addlabel:',labelname)
+    cfg.projects['skin']['labels'].append(labelname)
+    return jsonify({'success':True})
 
 @app.route('/updatelabel/<imgID>',methods=['POST'])
 def save_annotation(imgID):
@@ -90,7 +103,7 @@ def thumbnail(imgID):
 
 @app.route('/labellist')
 def project():
-    return jsonify( cfg.projects['skin'])
+    return jsonify(cfg.projects['skin']['labels'])
 
 @app.route('/imagelist')
 def dataset_list():
@@ -100,17 +113,17 @@ def dataset_list():
     dslist = [ {'id':libfi.filename(x)} for x in files]
     return jsonify(dslist)
 
-
 @app.route('/imageinfo/<imgID>')
 def imageinfo(imgID):
     print('imageinfo:', imgID)
     tar_file = f'{cfg.IMAGE_PATH}/{imgID}.bmp'
     if libfi.exist(tar_file):
         img = im_io.imread(tar_file)
-        result = {'name':libfi.filename(tar_file),'width':img.shape[0],'height':img.shape[1],'id':imgID}
+        result = {'name':libfi.filename(tar_file)+'.bmp','width':img.shape[0],'height':img.shape[1],'id':imgID}
         return jsonify(result)
     else:
         abort(404)
 
 if __name__ == '__main__':
-    application.run(host='localhost',debug=True)
+    app.run(host=cfg.ENDIP, port=cfg.ENDPORT, debug=True)
+
