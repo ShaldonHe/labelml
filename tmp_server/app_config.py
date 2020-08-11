@@ -5,16 +5,17 @@ import os
 # HOST = '10.0.0.21'
 # HOST = 'localhost'
 
+import libs.common.files as libfi
+
 PROJECT_NAME = 'skin' #'VOC2007' #'oxfordpets'
 # BASE_PATH = '/home/sheldon/Document/code/beyes/labelml/server' #'/bigguy/data' #'/Users/bfortuner/data'
-cw_dir = __file__[:-len('/config.py')]
-print('Current Work Dir:',cw_dir)
+cw_dir = libfi.folder(__file__)
+print('当前工作目录:',cw_dir)
 BASE_PATH = '{}'.format(cw_dir) #'/bigguy/data' #'/Users/bfortuner/data'
-PROJECT_PATH = os.path.join(BASE_PATH, PROJECT_NAME)
 DATASET_PATH = os.path.join(BASE_PATH,'dataset')
-MEDIA_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'images')
+IMAGE_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'images')
 THUMB_PATH = os.path.join(BASE_PATH,'dataset', PROJECT_NAME, 'thumbnail')
-print(MEDIA_PATH)
+print(IMAGE_PATH)
 
 PROJECT_LABELS = (
     'car', 'trafficlight', 'biker'

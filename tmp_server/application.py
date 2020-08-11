@@ -8,7 +8,7 @@ import libs.image.io as im_io
 import libs.image.ops as im_ops
 import json
 
-import config as cfg
+import app_config as cfg
 # import data
 
 
@@ -37,7 +37,7 @@ def getParms(request):
 
 @app.route('/img/<projectID>/<dsID>/<imgID>')
 def image(projectID,dsID, imgID):
-    img_dir = cfg.MEDIA_PATH
+    img_dir = cfg.IMAGE_PATH
     print('img_dir,project,filename:',projectID,dsID,imgID)
     return send_from_directory(img_dir, imgID+'.bmp')
 
@@ -78,7 +78,7 @@ def thumbnail(projectID, dsID, imgID):
 
         
     if not libfi.exist(tar_file):
-        src_file = cfg.MEDIA_PATH + '/' + imgID+'.bmp'
+        src_file = cfg.IMAGE_PATH + '/' + imgID+'.bmp'
         if not libfi.exist(src_file):
             abort(404)
         else:
@@ -93,9 +93,9 @@ def project(projectID):
     else:
         abort(404)
 
-@app.route('/project/dataset/list/<dsname>')
-def dataset_list(dsname):
-    img_dir = cfg.MEDIA_PATH
+@app.route('/getimagelist')
+def dataset_list():
+    img_dir = cfg.IMAGE_PATH
     print(img_dir)
     libfi.filename
     files = libfi.get_files(img_dir,'bmp')
