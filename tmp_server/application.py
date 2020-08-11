@@ -9,7 +9,7 @@ import libs.image.ops as im_ops
 import json
 
 import config as cfg
-import data
+# import data
 
 
 def create_app(**kwargs):
@@ -24,7 +24,6 @@ def save_json(filepath,j):
     with open(filepath,'w',encoding='utf-8') as json_file:
         data = json.loads(j)
         data['flags'] = {}
-
         json.dump(data, json_file)
     
 
