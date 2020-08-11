@@ -25,19 +25,6 @@ FOLD_FNAME = 'labels.json'
 PREDS_FNAME = 'predictions.json'
 RANKINGS_FNAME = 'rankings.csv'
 
-TRAIN = 'trn'
-VAL = 'val'
-TEST = 'tst'
-UNLABELED = 'unlabeled'
-ALL = 'All'
-
-IMG_EXT = '.bmp'
-
-DEFAULT_WIDTH = 300
-DEFAULT_HEIGHT = 300
-BATCH_SIZE = 12
-VAL_FOLD_RATIO = 0.2
-
 
 class Config(object):
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
